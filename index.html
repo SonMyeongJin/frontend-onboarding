@@ -1,14 +1,418 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="ja">
+<head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/src/assets/favicon.svg" />
+    <link
+            rel="icon"
+            type="image/svg+xml"
+            href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmyb8H20vGmWaJfUW0RrgX6_s1l47BGzTu-xjlxtmcMLPav0r7Oi1ZG54&s"
+    />
     <link rel="stylesheet" href="/src/style.css" />
+    <script type="module" src="/src/main.ts"></script>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/index.ts"></script>
-  </body>
+    <title>ミョンジンを紹介します！</title>
+
+    <script></script>
+</head>
+
+<body>
+<h1 class="introduction" title="self introduction">自己紹介</h1>
+
+<section class="warning">
+    <div class="warning__ani">
+        <p>無断転載・無断複製禁止</p>
+    </div>
+</section>
+
+<section class="header">
+    <span class="navi-title">[目次] Navigation</span>
+    <nav>
+        <ul class="navi-yoso">
+            <li><a href="#self-introduction">自己紹介</a></li>
+            <li><a href="#work">勤務情報</a></li>
+            <li><a href="#tech">skill</a></li>
+            <li><a href="#favorite">好きな歌</a></li>
+            <li><a href="#daily">日記</a></li>
+        </ul>
+    </nav>
+</section>
+
+<hr />
+<main id="self-introduction">
+    <section>
+        <p class="profile-container">
+            <img
+                    class="profile-picture"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmyb8H20vGmWaJfUW0RrgX6_s1l47BGzTu-xjlxtmcMLPav0r7Oi1ZG54&s"
+                    alt="Turtle pokemon"
+            />
+        </p>
+
+        <p id="information">
+            10月1日に入社した。 <strong>ソンミョンジン</strong>です。
+            料理を作るのがすきです。最近はピアノ緒戦するか思っています。
+            今からよろしくお願いします。
+        </p>
+
+        <dl class="second_information">
+            <dt onclick="cancel()">出身地</dt>
+            <dd><address>韓国、SEOUL Seodaemoon</address></dd>
+
+            <dt>入社日</dt>
+            <dd><time datetime="2025-10-1">25.10.01</time></dd>
+        </dl>
+    </section>
+
+    <hr />
+
+    <section id="work">
+        <h2>勤務情報</h2>
+        <dl>
+            <dt>部署</dt>
+            <dd>CIT-MC</dd>
+            <dt>勤務時間</dt>
+            <dd>
+                <time datetime="10:00">10:00</time>
+                ~
+                <time datetime="19:00">19:00</time>
+            </dd>
+            <dt>勤務方式</dt>
+            <dd>
+                <ul>
+                    <li>remote</li>
+                    <li><mark>本社</mark></li>
+                </ul>
+            </dd>
+        </dl>
+    </section>
+
+    <hr />
+
+    <!-- skill -->
+    <section id="tech">
+        <h2>skill</h2>
+
+        <ol class="tech__content">
+            <li>Java</li>
+            <li>PHP</li>
+            <li class="javascript">JavaScript</li>
+        </ol>
+    </section>
+</main>
+
+<hr />
+
+<!-- 好きな歌-->
+<section id="favorite">
+    <h2 onclick="changeText('hi')">🎤好きな歌</h2>
+
+    <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/Q5JytNgQzqk?si=E3MQW7gjaxkwOnyA&amp;controls=0"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+    ></iframe>
+
+    <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/x46yKKXI7Ig?si=ilYzC6F1Ij29Tcw4"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+    ></iframe>
+</section>
+
+<hr />
+
+<h2>日記</h2>
+<table class="daily__table">
+    <thead class="daily__table__head">
+    <tr>
+        <th>月</th>
+        <th>火</th>
+        <th>水</th>
+        <th>木</th>
+        <th>金</th>
+        <th>土</th>
+        <th>日</th>
+    </tr>
+    </thead>
+
+    <tbody class="daily__table__body">
+    <tr>
+        <td>
+            <article>
+                <details>
+                    <summary>2月16日</summary>
+                    <p>
+                        今日はめちゃ美味しいラーメン屋さんを探した！
+                        めちゃ推ししかった。
+                    </p>
+                </details>
+            </article>
+        </td>
+
+        <td>
+            <article>
+                <details>
+                    <summary>2月17日</summary>
+                    <p>
+                        今日はめちゃ美味しいラーメン屋さんを探した！
+                        めちゃ推ししかった。
+                    </p>
+                </details>
+            </article>
+        </td>
+
+        <td>
+            <article>
+                <details>
+                    <summary>2月18日</summary>
+                    <p>
+                        今日はめちゃ美味しいラーメン屋さんを探した！
+                        めちゃ推ししかった。
+                    </p>
+                </details>
+            </article>
+        </td>
+
+        <td>
+            <article>
+                <details>
+                    <summary>2月19日</summary>
+                    <p>
+                        今日はめちゃ美味しいラーメン屋さんを探した！
+                        めちゃ推ししかった。
+                    </p>
+                </details>
+            </article>
+        </td>
+
+        <td>
+            <article>
+                <details>
+                    <summary>2月20日</summary>
+                    <p>
+                        今日はめちゃ美味しいラーメン屋さんを探した！
+                        めちゃ推ししかった。
+                    </p>
+                </details>
+            </article>
+        </td>
+
+        <td>
+            <article>
+                <details>
+                    <summary>2月21日</summary>
+                    <p>今日は風邪にかけて体調が悪かった。 元気にしよ。</p>
+                </details>
+            </article>
+        </td>
+
+        <td>
+            <article>
+                <details>
+                    <summary>2月22日</summary>
+                    <p>今日は何をするかな。なんか面白いことないかな？</p>
+                </details>
+            </article>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <article>
+                <details>
+                    <summary>2月23日</summary>
+                    <p>
+                        今日は休みの日だ。<br />
+                        休む日はShoppingもするし、運動もしている。
+                    </p>
+                </details>
+            </article>
+        </td>
+
+        <td>
+            <article>
+                <details>
+                    <summary>2月24日</summary>
+                    <p>
+                        今日は新卒研修が終わってUnitに入った日だ。<br />
+                        今日からも頑張ろう！
+                    </p>
+                </details>
+            </article>
+        </td>
+
+        <td>
+            <article>
+                <details>
+                    <summary>2月25日</summary>
+                    <p>
+                        今日は新卒研修が終わってUnitに入った日だ。<br />
+                        今日からも頑張ろう！
+                    </p>
+                </details>
+            </article>
+        </td>
+
+        <td>
+            <article>
+                <details>
+                    <summary>2月26日</summary>
+                    <p>
+                        今日は新卒研修が終わってUnitに入った日だ。<br />
+                        今日からも頑張ろう！
+                    </p>
+                </details>
+            </article>
+        </td>
+
+        <td>
+            <article>
+                <details>
+                    <summary>2月27日</summary>
+                    <p>
+                        今日は新卒研修が終わってUnitに入った日だ。<br />
+                        今日からも頑張ろう！
+                    </p>
+                </details>
+            </article>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<hr />
+
+<!-- <footer>
+  <form id="form">
+    <label for="Message"> 応援メッセージ to MJ</label>
+    <input
+      id="inputid"
+      type="text"
+      required
+      minlength="1"
+      maxlength="20"
+      size="50"
+    />
+
+    <button type="submit" name="button">send</button>
+
+    <div>
+      <small> Email : m-son@r-up.jp </small>
+    </div>
+  </form>
+</footer> -->
+
+<section id="pokemon">
+    <h2>私の好きなポケモンを当ててみてください !!</h2>
+
+    <form id="pokemon-form">
+        <label>Pokemon No.</label>
+        <input id="pokemon-input" type="text" />
+        <button type="submit">このポケモンだと思う！</button>
+    </form>
+
+    <table class="pokemon__table">
+        <thead>
+        <tr>
+            <th>番号</th>
+            <th>名前</th>
+            <th>タイプ</th>
+        </tr>
+        </thead>
+        <tbody id="pokemon-body"></tbody>
+    </table>
+</section>
+
+<hr />
+
+<section id="guess-pokemon">
+    <h2>このPokemonは何でしょう?</h2>
+
+    <table class="guess-pokemon__table">
+        <thead>
+        <tr>
+            <th>タイプ</th>
+            <th>高さ</th>
+            <th>重さ</th>
+            <th>合う場所</th>
+            <th>ability</th>
+        </tr>
+        </thead>
+        <tbody id="guess-pokemon-body"></tbody>
+    </table>
+
+    <form id="guess-form">
+        <label for="guess-input">Pokemon Name</label>
+        <input id="guess-input" type="text" />
+        <button type="submit">このポケモンだと思う！</button>
+    </form>
+</section>
+
+<hr />
+
+<!----------------------- Pokemon Battle -------------------------------->
+<h2>Game Corner</h2>
+
+<section class="pokemon-battle">
+    <h2>ポケモンバトル</h2>
+    <p>ゼニガメ VS ヒトカゲ</p>
+
+    <div class="battle-field" >
+        <section class="pokemon-info zenigame" id="zenigame">
+            <h3>ゼニガメ</h3>
+            <img
+                    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png"
+                    alt="Zenigame"
+            />
+
+            <ul class="status">
+                <li>HP: <span id="blueHP">100</span></li>
+                <li>Attack: 30</li>
+                <li>Defense: 60</li>
+                <li>Speed: 15</li>
+            </ul>
+
+            <ul class="skill">
+                <li class="skill1"><button>たきのぼり</button></li>
+                <li class="skill2"><button>みずでっぽう</button></li>
+                <li class="skill3"><button>あわ</button></li>
+                <li class="skill4"><button>ハイドロポンプ</button></li>
+            </ul>
+        </section>
+
+        <section class="pokemon-info hitokage disabled" id="hitokage">
+            <h3>ヒトカゲ</h3>
+            <img
+                    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png"
+                    alt="Hitokage"
+            />
+
+            <ul class="status">
+                <li>HP: <span id="redHP">100</span></li>
+                <li>Attack: 80</li>
+                <li>Defense: 20</li>
+                <li>Speed: 30</li>
+            </ul>
+
+            <ul class="skill">
+                <li class="skill1"><button>ひのこ</button></li>
+                <li class="skill2"><button>かえんほうしゃ</button></li>
+                <li class="skill3"><button>ひのたま</button></li>
+                <li class="skill4"><button>ブラストバーン</button></li>
+            </ul>
+        </section>
+    </div>
+</section>
+</body>
 </html>
