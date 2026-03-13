@@ -260,12 +260,12 @@ async function battleClickHandler() {
   let blueHP = 100;
   const blueAttack = 10;
   const blueDefense = 60;
-  const _blueSpeed = 15;
+  // const _blueSpeed = 15;
 
   let redHP = 100;
   const redAttack = 20;
   const redDefense = 30;
-  const _redSpeed = 30;
+  // const _redSpeed = 30;
 
   const skillPower: number[] = [1, 2, 3, 4, 1, 2, 3, 4];
 
