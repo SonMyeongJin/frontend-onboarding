@@ -136,7 +136,7 @@ async function getPokemon(name: string | number) {
   const json = (await response.json()) as Pokemon;
   return json;
 }
-async function submitClickHandler() {
+function submitClickHandler() {
   const form = document.getElementById('form') as HTMLFormElement;
   const input = document.getElementById('inputid') as HTMLInputElement;
 
@@ -149,7 +149,7 @@ async function submitClickHandler() {
   });
 }
 
-async function guessClickHandler() {
+function guessClickHandler() {
   const form = document.getElementById('pokemon-form') as HTMLFormElement;
   const input = document.getElementById('pokemon-input') as HTMLInputElement;
 
@@ -239,7 +239,7 @@ async function guessRandomClickHandler() {
   row.appendChild(abilityData);
   body?.appendChild(row);
 
-  form.addEventListener('submit', async (e) => {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
     console.log('user input: ', input.value);
 
@@ -252,7 +252,7 @@ async function guessRandomClickHandler() {
   });
 }
 
-async function battleClickHandler() {
+function battleClickHandler() {
   //----------------------- Pokemon Battle -------------------------------->
   // blue = ゼニガメ / squirtle / 꼬부기
   // red = ヒトカゲ / charmander / 파이리
