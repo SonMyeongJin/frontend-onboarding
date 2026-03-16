@@ -136,9 +136,21 @@ async function getPokemon(name: string | number) {
   const json = (await response.json()) as Pokemon;
   return json;
 }
+
 function submitClickHandler() {
-  const form = document.getElementById('form') as HTMLFormElement;
-  const input = document.getElementById('inputid') as HTMLInputElement;
+  // as HTMLFormElement : 使わない方が安全　なぜなら、もしHTMLFormElementじゃなかったらエラーになるから
+  const form = document.getElementById('form'); // as HTMLFormElement;
+  const input = document.getElementById('inputid'); // as HTMLInputElement;
+  // instead of using "as HTMLFormElemnet"
+  // falsy : false ぽっい値
+  if (!(form instanceof HTMLFormElement)) {
+    console.error('Form element not found or not a form');
+    return;
+  }
+  if (!(input instanceof HTMLInputElement)) {
+    console.error('Input element not found or not an input');
+    return;
+  }
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -150,8 +162,17 @@ function submitClickHandler() {
 }
 
 function guessClickHandler() {
-  const form = document.getElementById('pokemon-form') as HTMLFormElement;
-  const input = document.getElementById('pokemon-input') as HTMLInputElement;
+  // submitClickHandlerと同様に、HTMLFormElementとHTMLInputElementを安全に取得する方法
+  const form = document.getElementById('pokemon-form'); // as HTMLFormElement;
+  const input = document.getElementById('pokemon-input'); // as HTMLInputElement;
+  if (!(form instanceof HTMLFormElement)) {
+    console.error('Form element not found or not a form');
+    return;
+  }
+  if (!(input instanceof HTMLInputElement)) {
+    console.error('Input element not found or not an input');
+    return;
+  }
 
   const correctPokemon = 387; // 387: turtwig / ナエトル / 모부기
 
@@ -205,8 +226,17 @@ function addTableRow(pokemon: Pokemon, doko: HTMLElement) {
 }
 
 async function guessRandomClickHandler() {
-  const form = document.getElementById('guess-form') as HTMLFormElement;
-  const input = document.getElementById('guess-input') as HTMLInputElement;
+  // submitClickHandlerと同様に、HTMLFormElementとHTMLInputElementを安全に取得する方法
+  const form = document.getElementById('guess-form');
+  const input = document.getElementById('guess-input');
+  if (!(form instanceof HTMLFormElement)) {
+    console.error('Form element not found or not a form');
+    return;
+  }
+  if (!(input instanceof HTMLInputElement)) {
+    console.error('Input element not found or not an input');
+    return;
+  }
 
   // Randomに　もらいたい
   const correctPokemonNumber = Math.floor(Math.random() * 900) + 1; // 898: as of gen 8
