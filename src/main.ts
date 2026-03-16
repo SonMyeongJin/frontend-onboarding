@@ -1,23 +1,3 @@
-export {};
-
-const _changeText = (text: string) => {
-  const selfIntroduction = document.querySelectorAll('#self-introduction p');
-
-  selfIntroduction.forEach((element) => {
-    element.innerHTML = text;
-  });
-};
-
-function _cancel() {
-  const element = document.querySelectorAll(
-    '#self-introduction > section:nth-child(1) > dl > dd:nth-child(2) > address',
-  );
-
-  element.forEach((element) => {
-    element.classList.add('hidden');
-  });
-}
-
 //----------------------- Pokemon DTO----------------------------------
 type Pokemon = {
   id: number;
