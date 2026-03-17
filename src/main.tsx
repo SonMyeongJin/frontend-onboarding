@@ -1,7 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-
-import { Router } from './routes';
+import { Router } from './app/routes';
 
 export const renderApp = () => {
   const idElement = document.getElementById('root');

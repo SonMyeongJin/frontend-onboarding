@@ -11,20 +11,22 @@ const hint: string[] = [
   'なんとなく387回挑戦すれば正解に近づくかもしれない？ ^_^',
 ];
 
-function setupGuessFavorite() {
-  const form = document.getElementById('pokemon-form');
-  const _input = document.getElementById('pokemon-input');
+const form = document.getElementById('pokemon-form');
 
+const input = document.getElementById('pokemon-input'); // as HTMLInputElement;
+const doko = document.getElementById('pokemon-body');
+
+function setupGuessFavorite() {
   if (!(form instanceof HTMLFormElement)) {
     return;
   }
 
   form.addEventListener('submit', onGuessSubmitHandler);
 }
+
 async function onGuessSubmitHandler(e: SubmitEvent) {
   e.preventDefault();
 
-  const input = document.getElementById('pokemon-input'); // as HTMLInputElement;
   if (!(input instanceof HTMLInputElement)) {
     return;
   }
@@ -32,12 +34,9 @@ async function onGuessSubmitHandler(e: SubmitEvent) {
   const pokemon = await getPokemon(input.value);
   console.log(pokemon.name);
 
-  // add table row
-  const doko = document.getElementById('pokemon-body');
-  //下の関数呼ぶ。dokoに！マークは ”dokoがnullわけない”ということをCompilerに教えてあげる。
+  // 下の数呼ぶ。dokoに！マークは ”dokoがnullわけない”ということをCompilerに教えてあげる。
   //（Compile段階ではErrorがないけどRuntimeでErrorになる可能性）→ あんまりよくないかも
   addGuessTableRow(pokemon, doko!);
-
   // check if correct
   if (pokemon.id === correctPokemon) {
     alert(`Correct! The pokemon is ${pokemon.name}!`);
@@ -50,9 +49,10 @@ async function onGuessSubmitHandler(e: SubmitEvent) {
     alert(`Wrong! Here's a hint: ${hint[hintIndex]}`);
   }
 }
+
 function addGuessTableRow(pokemon: Pokemon, doko: HTMLElement) {
   // <tr>
-  //   <td>number</td>
+  //  <td>number</td>
   //   <td>name</td>
   //   <td>type</td>
   // </tr>
@@ -66,7 +66,9 @@ function addGuessTableRow(pokemon: Pokemon, doko: HTMLElement) {
   // type = pokemon.abilities
   numberData.textContent = String(pokemon.id);
   nameData.textContent = String(pokemon.name);
-  typeData.textContent = String(pokemon.abilities);
+  typeData.textContent = String(
+    pokemon.abilities.map((a) => a.ability.name).join(', '),
+  );
 
   // appendChild : rowの子要素としてnumberData, nameData, typeDataを追加する。
   // <tr>
