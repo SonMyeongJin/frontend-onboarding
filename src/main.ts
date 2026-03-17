@@ -346,11 +346,12 @@ function battleClickHandler() {
 
         if (redHpElement?.innerText) {
           // HTMLにHPを表示するために
-          redHpElement.innerText = redHP.toFixed(0).toString();
+          redHpElement.innerText = redHP.toFixed(0).toString(); // toString() 無くでもいい。でもTextにNumberを入ればErrorになる。
 
           // cssのために
           if (hpListElement) {
-            hpListElement.dataset.hp = redHP.toFixed(0).toString();
+            //.dataset.hpは自動にdata-hp属性をつくてくれる。つまり、hpListElement 要素にdata-hp属性ができて、そこにredHPの値を入れる。
+            hpListElement.dataset.hp = redHP.toFixed(0).toString(); // tofixd => 小数点のために
           }
         }
         battleEndCheck();
