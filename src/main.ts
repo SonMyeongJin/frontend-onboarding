@@ -186,7 +186,7 @@ function guessClickHandler() {
     const doko = document.getElementById('pokemon-body');
     //下の関数呼ぶ。dokoに！マークは ”dokoがnullわけない”ということをCompilerに教えてあげる。
     //（Compile段階ではErrorがないけどRuntimeでErrorになる可能性）→ あんまりよくないかも
-    addTableRow(pokemon, doko!);
+    addGuessTableRow(pokemon, doko!);
 
     // check if correct
     if (pokemon.id === correctPokemon) {
@@ -202,7 +202,7 @@ function guessClickHandler() {
   });
 }
 
-function addTableRow(pokemon: Pokemon, doko: HTMLElement) {
+function addGuessTableRow(pokemon: Pokemon, doko: HTMLElement) {
   // <tr>
   //   <td>number</td>
   //   <td>name</td>
@@ -237,6 +237,7 @@ async function guessRandomClickHandler() {
   // submitClickHandlerと同様に、HTMLFormElementとHTMLInputElementを安全に取得する方法
   const form = document.getElementById('guess-form');
   const input = document.getElementById('guess-input');
+  // as Element 使わなくで安定を検査する。
   if (!(form instanceof HTMLFormElement)) {
     console.error('Form element not found or not a form');
     return;
@@ -246,7 +247,7 @@ async function guessRandomClickHandler() {
     return;
   }
 
-  // Randomに　もらいたい
+  // RandomにPokemonIDを受けるために
   const correctPokemonNumber = Math.floor(Math.random() * 900) + 1; // 898: as of gen 8
   const correctPokemonName = String(
     (await getPokemon(correctPokemonNumber)).name,
@@ -254,7 +255,27 @@ async function guessRandomClickHandler() {
   console.log('Correct Pokemon: ', correctPokemonName);
   const pokemon = await getPokemon(correctPokemonNumber);
 
-  const body = document.getElementById('guess-pokemon-body');
+  addGuessRandomTableRow(
+    pokemon,
+    document.getElementById('guess-pokemon-body')!,
+  );
+
+  form.addEventListener('submit', (e) => {
+    // 上と同じ。
+    e.preventDefault();
+    console.log('user input: ', input.value);
+
+    // 使用者が入力した値を持って入れる。
+    const guess = String(input.value);
+    if (guess === correctPokemonName) {
+      alert(`Correct! The pokemon is ${guess}!`);
+    } else {
+      alert('Wrong! Try again!');
+    }
+  });
+}
+
+function addGuessRandomTableRow(pokemon: Pokemon, body: HTMLElement) {
   const row = document.createElement('tr');
   const type = document.createElement('td');
   const tall = document.createElement('td');
@@ -276,18 +297,6 @@ async function guessRandomClickHandler() {
   row.appendChild(locationData);
   row.appendChild(abilityData);
   body?.appendChild(row);
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    console.log('user input: ', input.value);
-
-    const guess = String(input.value);
-    if (guess === correctPokemonName) {
-      alert(`Correct! The pokemon is ${guess}!`);
-    } else {
-      alert('Wrong! Try again!');
-    }
-  });
 }
 
 //----------------------- Pokemon Battle -------------------------------->
@@ -306,6 +315,8 @@ const redDefense = 30;
 
 const skillPower: number[] = [1, 2, 3, 4, 1, 2, 3, 4];
 
+let blueTurn: boolean = true; // true: blue's turn, false: red's turn
+
 //querySelectorAll( CSS selctor ) : 해당하는 모든 요소를 NodeList 형태로 반환
 // 즉 id=zenigame 안에 있는 skill 클래스 안에 있는 button 요소들을 모두 가져와서 리스트로 blueBattleButtons에 저장
 const blueBattleButtons = document.querySelectorAll('#zenigame .skill button');
@@ -323,8 +334,6 @@ const blueHpElement = document.getElementById('blueHP');
 const blueHpListElement = blueHpElement?.parentElement;
 
 function battleClickHandler() {
-  let blueTurn: boolean = true; // true: blue's turn, false: red's turn
-
   // [<button>たきのぼり</button>, <button>みずでっぽう</button>, <button>あわ</button>, <button>ハイドロポンプ</button>]
   // forEach : 각 배열의 요소
   blueBattleButtons.forEach((button, index) => {
@@ -375,36 +384,37 @@ function battleClickHandler() {
       }
     });
   });
+}
 
-  function HpCalculator(
-    attackerAttack: number,
-    defenderDefense: number,
-    skillPower: number,
-  ) {
-    const damage = (skillPower * attackerAttack) / defenderDefense;
-    return damage * 10; // ダメージを10倍してHPから引く
+function HpCalculator(
+  attackerAttack: number,
+  defenderDefense: number,
+  skillPower: number,
+) {
+  const damage = (skillPower * attackerAttack) / defenderDefense;
+  return damage * 10; // ダメージを10倍してHPから引く
+}
+
+function battleEndCheck() {
+  if (blueHP <= 0) {
+    alert('Red wins! The pokemon is ヒトカゲ !');
+  }
+  if (redHP <= 0) {
+    alert('Blue wins! The pokemon is ゼニガメ !');
+  }
+}
+
+function turnChange() {
+  if (blueTurn) {
+    blueTurn = false;
+    zenigameSection?.classList.toggle('disabled');
+    hitokageSection?.classList.toggle('disabled');
+  } else {
+    blueTurn = true;
+    hitokageSection?.classList.toggle('disabled');
+    zenigameSection?.classList.toggle('disabled');
   }
 
-  function battleEndCheck() {
-    if (blueHP <= 0) {
-      alert('Red wins! The pokemon is ヒトカゲ !');
-    } else if (redHP <= 0) {
-      alert('Blue wins! The pokemon is ゼニガメ !');
-    }
-  }
-
-  function turnChange() {
-    if (blueTurn) {
-      blueTurn = false;
-      zenigameSection?.classList.toggle('disabled');
-      hitokageSection?.classList.toggle('disabled');
-    } else {
-      blueTurn = true;
-      hitokageSection?.classList.toggle('disabled');
-      zenigameSection?.classList.toggle('disabled');
-    }
-
-    console.log(`Blue HP: ${blueHP}, Red HP: ${redHP}`);
-    console.log("who's turn?  blueTurn:", blueTurn);
-  }
+  console.log(`Blue HP: ${blueHP}, Red HP: ${redHP}`);
+  console.log("who's turn?  blueTurn:", blueTurn);
 }
