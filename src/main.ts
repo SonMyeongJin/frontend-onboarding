@@ -103,7 +103,8 @@ type PokemonType = {
 };
 
 // ----------------------- Pokemon API ----------------------------------
-// https://pokeapi.co/api/v2/pokemon/{id or name}/
+
+//DOMがロードされたら実行。一回だけ実行される。
 document.addEventListener('DOMContentLoaded', () => {
   submitClickHandler();
   guessClickHandler();
@@ -112,15 +113,18 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function getPokemon(name: string | number) {
+  // https://pokeapi.co/api/v2/pokemon/{id or name}/
   const url = `https://pokeapi.co/api/v2/pokemon/${name.toString()}/`;
-
+  // fetch : APIにリクエストを送るための関数 (HTTP GET)
   const response = await fetch(url);
+  // このResponseをJson変数に入れる。形はPokemonで宣言
   const json = (await response.json()) as Pokemon;
   return json;
 }
 
 function submitClickHandler() {
   // as HTMLFormElement : 使わない方が安全　なぜなら、もしHTMLFormElementじゃなかったらエラーになるから
+  // Id=form要素を持ってきてform変数に入れる。形はHTMLFormElement！
   const form = document.getElementById('form'); // as HTMLFormElement;
   const input = document.getElementById('inputid'); // as HTMLInputElement;
   // instead of using "as HTMLFormElemnet"
@@ -133,11 +137,13 @@ function submitClickHandler() {
     console.error('Input element not found or not an input');
     return;
   }
-
+  // formにsubmitイベントが起きたら、非同期関数を実行する。
   form.addEventListener('submit', async (e) => {
+    // form要素はsubmitイベントが起きると、ページのリロードが起きる。これを防ぐためにe.preventDefault()をする。
     e.preventDefault();
     console.log(input.value);
 
+    // pk.id, pk.name が呼ばれる前に　pk変数に入れないと。だから　Async＋awaitする。
     const pk = await getPokemon(input.value);
     console.log(pk.id, pk.name);
   });
@@ -147,6 +153,7 @@ function guessClickHandler() {
   // submitClickHandlerと同様に、HTMLFormElementとHTMLInputElementを安全に取得する方法
   const form = document.getElementById('pokemon-form'); // as HTMLFormElement;
   const input = document.getElementById('pokemon-input'); // as HTMLInputElement;
+  // 同じくに　as 代わりに　instanceof を使う方法で安全に取得する。
   if (!(form instanceof HTMLFormElement)) {
     console.error('Form element not found or not a form');
     return;
@@ -168,6 +175,7 @@ function guessClickHandler() {
   ];
 
   form.addEventListener('submit', async (e) => {
+    // 上と同じ。
     e.preventDefault();
     console.log(input.value);
 
@@ -176,6 +184,8 @@ function guessClickHandler() {
 
     // add table row
     const doko = document.getElementById('pokemon-body');
+    //下の関数呼ぶ。dokoに！マークは ”dokoがnullわけない”ということをCompilerに教えてあげる。
+    //（Compile段階ではErrorがないけどRuntimeでErrorになる可能性）→ あんまりよくないかも
     addTableRow(pokemon, doko!);
 
     // check if correct
@@ -191,19 +201,35 @@ function guessClickHandler() {
     }
   });
 }
+
 function addTableRow(pokemon: Pokemon, doko: HTMLElement) {
+  // <tr>
+  //   <td>number</td>
+  //   <td>name</td>
+  //   <td>type</td>
+  // </tr>
   const row = document.createElement('tr');
   const numberData = document.createElement('td');
   const nameData = document.createElement('td');
   const typeData = document.createElement('td');
 
+  // number = pokemon.id
+  // name = pokemon.name
+  // type = pokemon.abilities
   numberData.textContent = String(pokemon.id);
   nameData.textContent = String(pokemon.name);
   typeData.textContent = String(pokemon.abilities);
 
+  // appendChild : rowの子要素としてnumberData, nameData, typeDataを追加する。
+  // <tr>
+  //   <td> String(pokemon.id) </td>
+  //   <td> String(pokemon.name) </td>
+  //   <td> String(pokemon.abilities) </td>
+  // </tr>
   row.appendChild(numberData);
   row.appendChild(nameData);
   row.appendChild(typeData);
+  // dokoがあれば（null/undefinedじゃなければ）rowをdokoの子要素として追加する。
   doko?.appendChild(row);
 }
 
@@ -334,7 +360,6 @@ function battleClickHandler() {
 
         if (blueHpElement?.innerText) {
           // HTMLにHPを表示するために
-          // blueHpElement 요소에 텍스트에 값을 넣고
           // <span id="blueHP"> ここが innerText </span>
           blueHpElement.innerText = blueHP.toFixed(0).toString();
 
@@ -373,8 +398,7 @@ function battleClickHandler() {
       blueTurn = false;
       zenigameSection?.classList.toggle('disabled');
       hitokageSection?.classList.toggle('disabled');
-    }
-    if (!blueTurn) {
+    } else {
       blueTurn = true;
       hitokageSection?.classList.toggle('disabled');
       zenigameSection?.classList.toggle('disabled');
