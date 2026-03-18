@@ -1,4 +1,4 @@
-import { getPokemon, type Pokemon } from '../../features/pokemon/api';
+import { getPokemon, type Pokemon } from '../../../entities/pokemon/api';
 
 async function setupGuessRandom() {
   // submitClickHandlerと同様に、HTMLFormElementとHTMLInputElementを安全に取得する方法

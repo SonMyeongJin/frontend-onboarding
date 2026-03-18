@@ -1,3 +1,3 @@
-import { onLoadHandler } from '../app/init/onLoadHandler';
+import { onLoadHandler } from './init/onLoadHandler';
 
 document.addEventListener('DOMContentLoaded', onLoadHandler);

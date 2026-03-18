@@ -1,7 +1,7 @@
-import { setupBattle } from '../../organisms/battle/setupBattle';
-import { setupFooterSubmit } from '../../organisms/footer-submit/setupFooterSubmit';
-import { setupGuessFavorite } from '../../organisms/guess-favorite/setupGuessFavorite';
-import { setupGuessRandom } from '../../organisms/guess-random/setupGuessRandom';
+import { setupBattle } from 'src/widgets/battle/setupBattle';
+import { setupFooterSubmit } from '../../features/footer-submit/model/setupFooterSubmit';
+import { setupGuessFavorite } from '../../features/guess-favorite/model/setupGuessFavorite';
+import { setupGuessRandom } from '../../features/guess-random/model/setupGuessRandom';
 
 function onLoadHandler() {
   setupFooterSubmit();

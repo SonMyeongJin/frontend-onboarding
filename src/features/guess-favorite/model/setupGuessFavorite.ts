@@ -1,4 +1,4 @@
-import { getPokemon, type Pokemon } from '../../features/pokemon/api';
+import { getPokemon, type Pokemon } from '../../../entities/pokemon/api';
 
 const correctPokemon = 387; // 387: turtwig / ナエトル / 모부기
 
@@ -8,7 +8,7 @@ const hint: string[] = [
   "This pokemon's name starts with 'T'.",
   'This pokemon is 4th gen pokemon.',
   'This pokemon is starting pokemon of its generation.',
-  'なんとなく387回挑戦すれば正解に近づくかもしれない？ ^_^',
+  'なんとなく387回挑戦すれば正解に近づくかもしれない? ^_^',
 ];
 
 const form = document.getElementById('pokemon-form');
@@ -30,20 +30,24 @@ async function onGuessSubmitHandler(e: SubmitEvent) {
   if (!(input instanceof HTMLInputElement)) {
     return;
   }
+  if (!(doko instanceof HTMLElement)) {
+    return;
+  }
+
   console.log(input.value);
   const pokemon = await getPokemon(input.value);
   console.log(pokemon.name);
 
   // 下の数呼ぶ。dokoに！マークは ”dokoがnullわけない”ということをCompilerに教えてあげる。
   //（Compile段階ではErrorがないけどRuntimeでErrorになる可能性）→ あんまりよくないかも
-  addGuessTableRow(pokemon, doko!);
+  addGuessTableRow(pokemon, doko);
   // check if correct
   if (pokemon.id === correctPokemon) {
     alert(`Correct! The pokemon is ${pokemon.name}!`);
   } else {
     // add hint
     // hint[上に追加されたrow数]
-    const hintIndex = doko?.children.length
+    const hintIndex = doko.children.length
       ? Math.min(doko.children.length - 1, hint.length - 1)
       : 0;
     alert(`Wrong! Here's a hint: ${hint[hintIndex]}`);
@@ -80,7 +84,7 @@ function addGuessTableRow(pokemon: Pokemon, doko: HTMLElement) {
   row.appendChild(nameData);
   row.appendChild(typeData);
   // dokoがあれば（null/undefinedじゃなければ）rowをdokoの子要素として追加する。
-  doko?.appendChild(row);
+  doko.appendChild(row);
 }
 
 export { setupGuessFavorite };

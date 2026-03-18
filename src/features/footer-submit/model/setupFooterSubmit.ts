@@ -1,4 +1,4 @@
-import { getPokemon } from '../../features/pokemon/api';
+import { getPokemon } from '../../../entities/pokemon/api';
 
 function setupFooterSubmit() {
   // as HTMLFormElement : 使わない方が安全　なぜなら、もしHTMLFormElementじゃなかったらエラーになるから

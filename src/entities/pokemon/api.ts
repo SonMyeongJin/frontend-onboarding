@@ -1,4 +1,4 @@
-import type { Pokemon } from './type';
+import type { Pokemon } from './model/type';
 
 async function getPokemon(name: string | number) {
   // https://pokeapi.co/api/v2/pokemon/{id or name}/
@@ -11,6 +11,6 @@ async function getPokemon(name: string | number) {
 }
 
 export { getPokemon };
-export type { Pokemon } from './type';
+export type { Pokemon } from './model/type';
 
 // export { getPokemon , type Pokemon } from './type';
