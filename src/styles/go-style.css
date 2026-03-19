@@ -1,0 +1,33 @@
+#go-pokemon {
+  display: flex;
+  flex-direction: column; /* 포켓몬아래에 볼이 오도록 하기위해서 */
+  align-items: center;
+}
+
+.red-sakana {
+  position: relative;
+  animation: fish-move 2s infinite alternate /* 좌우 왔다갔다 */;
+}
+
+@keyframes fish-move {
+  from {
+    transform: translateX(-80px); /* 초기 위치 */
+  }
+  to {
+    transform: translateX(80px); /* 이동할 위치 */
+  }
+}
+
+.pokeball-button {
+  width: 70px;
+  height: 70px;
+  margin-top: 150px;
+  cursor: pointer;
+  background-image: url("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png");
+  background-size: contain;
+  border: none;
+}
+
+.pokeball-button:hover {
+  transform: scale(1.08);
+}
