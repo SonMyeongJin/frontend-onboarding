@@ -1,12 +1,16 @@
 #go-pokemon {
+  position: relative;
   display: flex;
   flex-direction: column; /* 포켓몬아래에 볼이 오도록 하기위해서 */
   align-items: center;
 }
 
 .red-sakana {
-  position: relative;
   animation: fish-move 2s infinite alternate /* 좌우 왔다갔다 */;
+  &.gocha {
+    transform: translateX(0);
+    animation: gocha-effect 1s forwards;
+  }
 }
 
 @keyframes fish-move {
@@ -18,31 +22,31 @@
   }
 }
 
-.go-pokemon {
-  position: relative;
+@keyframes gocha-effect {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5) rotate(360deg);
+    opacity: 0;
+  }
 }
 
-.pokeball-button {
+.pokeball-ball {
   position: absolute;
-  top: 100%;
-  left: center;
-  width: 50px;
-  height: 50px;
-  padding: 0;
+  bottom: -100%;
+  display: block;
+  width: 70px;
+  height: 70px;
   cursor: grab;
-  user-select: none;
-  background-size: contain;
   border: none;
 }
-.pokeball-button img {
-  width: 100%;
-  height: 100%;
-}
 
-.pokeball-button:hover {
+.pokeball-ball:hover {
   transform: scale(1.08);
 }
 
-.pokeball-button.dragging {
+.pokeball-ball:active {
   cursor: grabbing;
 }
