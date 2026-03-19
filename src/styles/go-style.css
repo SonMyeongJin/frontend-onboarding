@@ -19,10 +19,13 @@
 }
 
 .pokeball-button {
+  position: absolute;
+  top: 500%;
+  left: center;
   width: 70px;
   height: 70px;
-  margin-top: 150px;
-  cursor: pointer;
+  cursor: grab;
+  user-select: none;
   background-image: url("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png");
   background-size: contain;
   border: none;
@@ -30,4 +33,8 @@
 
 .pokeball-button:hover {
   transform: scale(1.08);
+}
+
+.pokeball-button.dragging {
+  cursor: grabbing;
 }
