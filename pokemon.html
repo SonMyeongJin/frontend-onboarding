@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ポケモン</title>
+    <link rel="stylesheet" href="src/styles/go-style.css">
+    <link rel="stylesheet" href="src/styles/style.css">
+    <script type="module" src="/src/app/main.ts"></script>
+</head>
+
+<body>
+<section id="pokemon">
+    <h2>私の好きなポケモンを当ててみてください !!</h2>
+
+    <form id="pokemon-form">
+        <label>Pokemon No.</label>
+        <input id="pokemon-input" type="text" />
+        <button type="submit">このポケモンだと思う！</button>
+    </form>
+
+    <table class="pokemon__table">
+        <thead>
+        <tr>
+            <th>番号</th>
+            <th>名前</th>
+            <th>タイプ</th>
+        </tr>
+        </thead>
+        <tbody id="pokemon-body"></tbody>
+    </table>
+</section>
+
+<hr />
+
+<section id="guess-pokemon">
+    <h2>このPokemonは何でしょう?</h2>
+
+    <table class="guess-pokemon__table">
+        <thead>
+        <tr>
+            <th>タイプ</th>
+            <th>高さ</th>
+            <th>重さ</th>
+            <th>合う場所</th>
+            <th>ability</th>
+        </tr>
+        </thead>
+        <tbody id="guess-pokemon-body"></tbody>
+    </table>
+
+    <form id="guess-form">
+        <label for="guess-input">Pokemon Name</label>
+        <input id="guess-input" type="text" />
+        <button type="submit">このポケモンだと思う！</button>
+    </form>
+</section>
+
+<hr />
+
+<!----------------------- Pokemon Battle -------------------------------->
+<h2>Game Corner</h2>
+
+<section class="pokemon-battle">
+    <h2>ポケモンバトル</h2>
+    <p>ゼニガメ VS ヒトカゲ</p>
+
+    <div class="battle-field" >
+        <section class="pokemon-info zenigame" id="zenigame">
+            <h3>ゼニガメ</h3>
+            <img
+                    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png"
+                    alt="Zenigame"
+            />
+
+            <ul class="status">
+                <li>HP: <span id="blueHP">100</span></li>
+                <li>Attack: 30</li>
+                <li>Defense: 60</li>
+                <li>Speed: 15</li>
+            </ul>
+
+            <ul class="skill">
+                <li class="skill1"><button type="button">たきのぼり</button></li>
+                <li class="skill2"><button type="button">みずでっぽう</button></li>
+                <li class="skill3"><button type="button">あわ</button></li>
+                <li class="skill4"><button type="button">ハイドロポンプ</button></li>
+            </ul>
+        </section>
+
+        <section class="pokemon-info hitokage disabled" id="hitokage">
+            <h3>ヒトカゲ</h3>
+            <img
+                    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png"
+                    alt="Hitokage"
+            />
+
+            <ul class="status">
+                <li>HP: <span id="redHP">100</span></li>
+                <li>Attack: 80</li>
+                <li>Defense: 20</li>
+                <li>Speed: 30</li>
+            </ul>
+
+            <ul class="skill">
+                <li class="skill1"><button type="button">ひのこ</button></li>
+                <li class="skill2"><button type="button">かえんほうしゃ</button></li>
+                <li class="skill3"><button type="button">ひのたま</button></li>
+                <li class="skill4"><button type="button">ブラストバーン</button></li>
+            </ul>
+        </section>
+    </div>
+</section>
+
+<hr />
+<hr />
+<!------------------------- Pokemon Go -------------------------------->
+<section class="pokemon-go">
+    <h2>ポケモンGO</h2>
+    <p>ポケモンを捕まえよう！</p>
+
+    <div class="go-field">
+        <section id="go-pokemon" class="go-pokemon">
+            <h3>ポケモンが出現！</h3>
+            <img
+                    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/129.png"
+                    alt="pokemon-RedSakana"
+                    class="red-sakana"
+            />
+
+            <button type="button" class="pokeball-button">
+                <img
+                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
+                        alt="Pokeball"
+                />
+                
+            </button>
+        </section>
+    </div>
+</section>
+
+
+</body>
+</html>
