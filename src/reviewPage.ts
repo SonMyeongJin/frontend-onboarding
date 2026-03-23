@@ -17,21 +17,40 @@ async function addReview() {
     const reviewUl = document.createElement('ul');
 
     reviews.forEach((item) => {
-      const reviewLi = document.createElement('li');
+      const reviewarticle = document.createElement('article');
+
+      const reviewerDiv = document.createElement('div');
+      reviewerDiv.classList.add('reviewer-info');
+
+      const reviewerImg = document.createElement('img');
+      reviewerImg.classList.add('reviewer-profile');
+      reviewerImg.src = item.reviewerProfileUrl;
+      reviewerImg.alt = `${item.reviewerName}'s profile picture`;
+      reviewerDiv.appendChild(reviewerImg);
 
       const reviewerName = document.createElement('p');
       reviewerName.textContent = item.reviewerName;
+      reviewerDiv.appendChild(reviewerName);
+
+      const reviewDiv = document.createElement('div');
 
       const reviewRating = document.createElement('p');
       reviewRating.textContent = '★'.repeat(item.reviewRating);
+      reviewRating.classList.add('review-rating');
+      reviewDiv.appendChild(reviewRating);
 
       const reviewContent = document.createElement('p');
       reviewContent.textContent = item.reviewContent;
+      reviewContent.classList.add('review-content');
+      reviewDiv.appendChild(reviewContent);
 
-      reviewLi.appendChild(reviewerName);
-      reviewLi.appendChild(reviewRating);
-      reviewLi.appendChild(reviewContent);
-      reviewUl.appendChild(reviewLi);
+      reviewarticle.appendChild(reviewerDiv);
+      reviewarticle.appendChild(reviewDiv);
+
+      const hr = document.createElement('hr');
+      reviewarticle.appendChild(hr);
+
+      reviewUl.appendChild(reviewarticle);
     });
 
     reviewSection.innerHTML = '';
