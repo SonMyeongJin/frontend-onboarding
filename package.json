@@ -38,7 +38,7 @@
   "scripts": {
     "build": "tsc && vite build",
     "build-storybook": "storybook build",
-    "dev": "vite",
+    "dev": "vite --port 3002",
     "format": "biome check --write --unsafe",
     "lint": "biome check",
     "serve": "vite preview",
