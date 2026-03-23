@@ -2,18 +2,22 @@
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="/src/review.css" />
+    <link rel="stylesheet" href="/src/styles/review.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>morecon review MJ</title>
-    <link rel="shortcut icon" href="https://d28qg0el9tv5wv.cloudfront.net/favicon.ico" type="image/x-icon">
+    <link
+      rel="shortcut icon"
+      href="https://d28qg0el9tv5wv.cloudfront.net/favicon.ico"
+      type="image/x-icon"
+    />
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/reviewPage.ts"></script>
+    <script type="module" src="/src/app/main.ts"></script>
 
     <nav class="navbar">
       <ul>
-        <div class ="nav-left">
+        <div class="nav-left">
           <li><a href="/index.html">MYEONGJINCON</a></li>
         </div>
 
@@ -28,47 +32,18 @@
 
     <input type="text" placeholder="商品を検索" />
 
-    <hr/>
+    <hr />
 
-    <section> 
+    <section>
       <h1 class="review-title">お客様からのレビュー</h1>
 
-      <hr/>
+      <hr />
 
       <section id="review-list">
-        <div >
+        <div>
           <!-- TSからレビューがここに表示されます -->
         </div>
       </section>
-
-      <!--
-      <article>
-        <div class="reviewer-info">
-          <img class="reviewer-profile" src="https://d344q2ej6fb281.cloudfront.net/reviewer/1020267.png" alt="reviewer-1 profile"/>
-          <p class="reviewer-name">reviewer-1 name</p>
-        </div>
-        
-        <div>
-          <p class="review-rating">★★★★★</p>
-          <p class="review-content">とても良い商品でした！また購入したいと思います。</p>
-        </div>
-      </article>
-
-      <hr/>
-
-      <article>
-        <div class="reviewer-info">
-          <img class="reviewer-profile" src="https://d344q2ej6fb281.cloudfront.net/reviewer/1020267.png" alt="reviewer-2 profile"/>
-          <p class="reviewer-name">reviewer-2 name</p>
-        </div>
-
-        <div>
-          <p class="review-rating">★★★★</p>
-          <p class="review-conㄴㄴent">ママ友におすすめされて購入しました。とても満足しています。</p>
-        </div>
-      </article> 
-      -->
-
     </section>
   </body>
 </html>

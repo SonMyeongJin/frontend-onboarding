@@ -1,4 +1,4 @@
-import type { review } from './reivew';
+import type { review } from '../domain/reivew';
 
 type ReviewApiItem = {
   reviewerName: string;

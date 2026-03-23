@@ -1,10 +1,4 @@
-import { getReviews } from './reviewController';
-
-document.addEventListener('DOMContentLoaded', onPageLoad);
-
-function onPageLoad() {
-  addReview();
-}
+import { getReviews } from 'src/features/reviewController';
 
 async function addReview() {
   const reviewSection = document.getElementById('review-list');
@@ -60,3 +54,5 @@ async function addReview() {
     reviewSection.textContent = 'error -> check console';
   }
 }
+
+export default addReview;
