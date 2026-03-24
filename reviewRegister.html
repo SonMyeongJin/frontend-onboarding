@@ -47,9 +47,51 @@
         </h2>
 
         <!-- レビュー投稿フォーム -->
-        <form id="review-form">
-            <!-- フォームの内容はここに追加されます -->
-        </form>
+        <section id="review-form-section">
+            <h1>エバーカラーワンデーナチュラル パールベージュ</h1>
+
+            <form id="review-form">
+                <section class="score-section">
+                    <label>評価</label>
+                    <select name="score">
+                        <option value="0">選択してください</option>
+                        <option value="1">★</option>
+                        <option value="2">★★</option>
+                        <option value="3">★★★</option>
+                        <option value="4">★★★★</option>
+                        <option value="5">★★★★★</option>
+                    </select>
+                </section>
+
+                <section class="comment-section">
+                    <label>
+                        コメント
+                    </label>
+                    <textarea>
+                    </textarea>
+                </section>
+
+                <section class="photo-section">
+                    <label>写真</label>
+                    <button type="button">写真を添付する</button>
+
+                    <p class="photo-guidelines">
+                        写真の例）目のアップ・顔アップ・プリクラ・レンズ等
+                        ・最大2枚、合計で10MBまで
+                        ・2ショット等の写真は必ず被写体の方の了承を得てください
+                        ・カラコンが確認しづらい､画像が不鮮明､
+                        　過度な加工がされている､個人情報が含まれる
+                        　お写真は掲載を控えさせて頂く場合もございます
+                    </p>
+                </section>
+            </form>
+
+            <section class="submit-section">
+                <button type="button">戻る</button>
+                <button type="submit">レビューを投稿する</button>
+            </section>
+
+        </section>
     </section>
 </body>
 
