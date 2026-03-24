@@ -1,26 +1,15 @@
-import type { review } from '../domain/reivew';
+import type { getReviewResponse } from 'src/domain/dto/getReviewResponse';
 
-type ReviewApiItem = {
-  reviewerName: string;
-  reviewerImagePath: string;
-  rating: number;
-  content: string;
-};
-
-type ReviewApiResponse = {
-  reviews: ReviewApiItem[];
-};
-
-async function getReviews(
-  productId: string,
-  perPage: number,
-  pageNumber: number,
-): Promise<review[]> {
+async function getReviews(getReviewRequest: {
+  productId: string;
+  perPage: number;
+  pageNumber: number;
+}): Promise<getReviewResponse> {
   const url = new URL(
-    `http://localhost:5001/review/search/product/${productId}/reviews`,
+    `http://localhost:5001/review/search/product/${getReviewRequest.productId}/reviews`,
   );
-  url.searchParams.set('perPage', String(perPage));
-  url.searchParams.set('pageNumber', String(pageNumber));
+  url.searchParams.set('perPage', String(getReviewRequest.perPage));
+  url.searchParams.set('pageNumber', String(getReviewRequest.pageNumber));
 
   const response = await fetch(url);
 
@@ -30,16 +19,8 @@ async function getReviews(
     );
   }
 
-  const data = (await response.json()) as ReviewApiResponse;
-
-  return data.reviews.map(
-    (item): review => ({
-      reviewContent: item.content,
-      reviewerName: item.reviewerName,
-      reviewerProfileUrl: item.reviewerImagePath,
-      reviewRating: item.rating,
-    }),
-  );
+  const data = (await response.json()) as getReviewResponse;
+  return data;
 }
 
 export { getReviews };

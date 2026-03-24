@@ -1,16 +1,23 @@
 import { getReviews } from 'src/features/getReviews';
 
+const getReviewRequest = {
+  pageNumber: 1,
+  perPage: 10,
+  productId: '1234',
+};
+
 async function renderReviewItem() {
   const reviewSection = document.getElementById('review-list');
+
   if (!reviewSection) {
     return;
   }
 
   try {
-    const reviews = await getReviews('1234', 10, 1);
+    const data = await getReviews(getReviewRequest);
     const reviewUl = document.createElement('ul');
 
-    reviews.forEach((item) => {
+    data.reviews.forEach((item) => {
       const reviewarticle = document.createElement('article');
 
       const reviewerDiv = document.createElement('div');
@@ -18,7 +25,7 @@ async function renderReviewItem() {
 
       const reviewerImg = document.createElement('img');
       reviewerImg.classList.add('reviewer-profile');
-      reviewerImg.src = item.reviewerProfileUrl;
+      reviewerImg.src = item.reviewerImagePath;
       reviewerImg.alt = `${item.reviewerName}'s profile picture`;
       reviewerDiv.appendChild(reviewerImg);
 
@@ -29,12 +36,12 @@ async function renderReviewItem() {
       const reviewDiv = document.createElement('div');
 
       const reviewRating = document.createElement('p');
-      reviewRating.textContent = '★'.repeat(item.reviewRating);
+      reviewRating.textContent = '★'.repeat(item.rating);
       reviewRating.classList.add('review-rating');
       reviewDiv.appendChild(reviewRating);
 
       const reviewContent = document.createElement('p');
-      reviewContent.textContent = item.reviewContent;
+      reviewContent.textContent = item.content;
       reviewContent.classList.add('review-content');
       reviewDiv.appendChild(reviewContent);
 
