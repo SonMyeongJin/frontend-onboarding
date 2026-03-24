@@ -1,3 +1,3 @@
-import onPageLoad from './onPageLoad';
+import { onPageLoad } from './onPageLoad';
 
 document.addEventListener('DOMContentLoaded', onPageLoad);

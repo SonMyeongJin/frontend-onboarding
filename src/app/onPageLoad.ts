@@ -1,7 +1,7 @@
-import addReview from 'src/features/addReview';
+import renderReviewItem from 'src/pages/components/renderReviewItem';
 
 function onPageLoad() {
-  addReview();
+  renderReviewItem();
 }
 
-export default onPageLoad;
+export { onPageLoad };

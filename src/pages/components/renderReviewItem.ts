@@ -1,6 +1,6 @@
-import { getReviews } from 'src/features/reviewController';
+import { getReviews } from 'src/features/getReviews';
 
-async function addReview() {
+async function renderReviewItem() {
   const reviewSection = document.getElementById('review-list');
   if (!reviewSection) {
     return;
@@ -55,4 +55,4 @@ async function addReview() {
   }
 }
 
-export default addReview;
+export default renderReviewItem;
