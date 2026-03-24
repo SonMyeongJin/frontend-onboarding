@@ -52,8 +52,8 @@
 
             <form id="review-form">
                 <section class="score-section">
-                    <label>評価</label>
-                    <select name="score">
+                    <label for="score">評価</label>
+                    <select name="score" id="score">
                         <option value="0">選択してください</option>
                         <option value="1">★</option>
                         <option value="2">★★</option>
@@ -64,31 +64,34 @@
                 </section>
 
                 <section class="comment-section">
-                    <label>
+                    <label for="comment-textarea">
                         コメント
                     </label>
-                    <textarea>
-                    </textarea>
+                    <textarea id="comment-textarea"></textarea>
                 </section>
 
                 <section class="photo-section">
-                    <label>写真</label>
-                    <button type="button">写真を添付する</button>
+                    <label for="photo">写真</label>
+                    <button id="photo" type="button">写真を添付する</button>
 
                     <p class="photo-guidelines">
                         写真の例）目のアップ・顔アップ・プリクラ・レンズ等
-                        ・最大2枚、合計で10MBまで
-                        ・2ショット等の写真は必ず被写体の方の了承を得てください
-                        ・カラコンが確認しづらい､画像が不鮮明､
-                        　過度な加工がされている､個人情報が含まれる
-                        　お写真は掲載を控えさせて頂く場合もございます
                     </p>
+                    <ul>
+                        <li>最大2枚、合計で10MBまで</li>
+                        <li>2ショット等の写真は必ず被写体の方の了承を得てください</li>
+                        <li>カラコンが確認しづらい､画像が不鮮明､過度な加工がされている､個人情報が含まれるお写真は掲載を控えさせて頂く場合もございます</li>
+                    </ul>
+
+
                 </section>
+
+                <button type="submit">レビューを投稿する</button>
             </form>
 
             <section class="submit-section">
                 <button type="button">戻る</button>
-                <button type="submit">レビューを投稿する</button>
+
             </section>
 
         </section>

@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="33a97ce7-e6eb-43e0-9fa8-10e5aaa8cdf3" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/review.html" beforeDir="false" afterPath="$PROJECT_DIR$/review.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reviewRegister.html" beforeDir="false" afterPath="$PROJECT_DIR$/reviewRegister.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/getReviews.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/getReviews.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/components/renderReviewItem.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/renderReviewItem.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/review.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/onPageLoad.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/onPageLoad.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +56,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "bun",
     "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "/Users/RU1129/IdeaProjects/ee/node_modules/typescript/lib",
+    "ts.external.directory.path": "/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -80,7 +77,7 @@
       <updated>1773379293649</updated>
       <workItem from="1773379295082" duration="3123000" />
       <workItem from="1773710800624" duration="974000" />
-      <workItem from="1774328628869" duration="395000" />
+      <workItem from="1774328628869" duration="4700000" />
     </task>
     <servers />
   </component>

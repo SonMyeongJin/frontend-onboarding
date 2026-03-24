@@ -1,10 +1,9 @@
+import type { getReviewRequest } from 'src/domain/dto/getReviewRequest';
 import type { getReviewResponse } from 'src/domain/dto/getReviewResponse';
 
-async function getReviews(getReviewRequest: {
-  productId: string;
-  perPage: number;
-  pageNumber: number;
-}): Promise<getReviewResponse> {
+async function getReviews(
+  getReviewRequest: getReviewRequest,
+): Promise<getReviewResponse> {
   const url = new URL(
     `http://localhost:5001/review/search/product/${getReviewRequest.productId}/reviews`,
   );
@@ -19,8 +18,8 @@ async function getReviews(getReviewRequest: {
     );
   }
 
-  const data = (await response.json()) as getReviewResponse;
-  return data;
+  const responseData: getReviewResponse = await response.json();
+  return responseData;
 }
 
 export { getReviews };
