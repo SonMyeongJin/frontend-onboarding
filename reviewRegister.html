@@ -48,11 +48,13 @@
 
         <!-- レビュー投稿フォーム -->
         <section id="review-form-section">
-            <h1>エバーカラーワンデーナチュラル パールベージュ</h1>
+            <h1 class="review-product-name">エバーカラーワンデーナチュラル パールベージュ</h1>
 
             <form id="review-form">
                 <section class="score-section">
-                    <label for="score">評価</label>
+                    <label for="score">
+                        <h2>評価</h2>
+                    </label>
                     <select name="score" id="score">
                         <option value="0">選択してください</option>
                         <option value="1">★</option>
@@ -61,17 +63,21 @@
                         <option value="4">★★★★</option>
                         <option value="5">★★★★★</option>
                     </select>
+                    <p id="score-error" class="error-message"></p>
                 </section>
 
                 <section class="comment-section">
                     <label for="comment-textarea">
-                        コメント
+                        <h2>コメント</h2>
                     </label>
                     <textarea id="comment-textarea"></textarea>
+                    <p id="comment-error" class="error-message"></p>
                 </section>
 
                 <section class="photo-section">
-                    <label for="photo">写真</label>
+                    <label for="photo">
+                        <h2>写真</h2>
+                    </label>
                     <button id="photo" type="button">写真を添付する</button>
 
                     <p class="photo-guidelines">

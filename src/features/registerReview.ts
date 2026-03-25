@@ -17,6 +17,8 @@ async function registerReview(
     throw new Error(`Failed to register review: ${error.message}`);
   });
 
+  // fetch の結果は Response オブジェクトとして生成され、HTTP 通信が成功したかどうかは response.ok で確認できる。
+  // HTTP 通信は成功したが、サーバーがエラーを返した場合の処理
   if (!response.ok) {
     switch (response.status) {
       case 400:
@@ -54,3 +56,10 @@ export { registerReview };
 
 // Response
 // { "reviewId": "0ba729db-75ef-4261-93b2-c08d4f2ffe2f" }
+
+// validation
+// 1. rating 1-5
+// rating=0 -> 선택해주세여
+// rating>5 -> 유효한 점수가 아닙니다.
+// 2. content not empty
+// 3. contend length < 10
