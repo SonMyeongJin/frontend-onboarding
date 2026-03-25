@@ -99,3 +99,10 @@ ul {
   padding-left: 30px;
   margin: 0;
 }
+a {
+  color: #ef6419;
+  text-decoration: none;
+}
+a:hover {
+  color: white;
+}
