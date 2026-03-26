@@ -1,4 +1,5 @@
 import type { registerReviewRequest } from 'src/domain/dto/registerReviewRequest';
+import { postReviewPhoto } from 'src/features/postReviewPhoto';
 import { registerReview } from 'src/features/registerReview';
 
 function renderReviewForm() {
@@ -6,7 +7,7 @@ function renderReviewForm() {
   if (!reviewForm) {
     return;
   }
-  reviewForm.addEventListener('submit', (event) => {
+  reviewForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const content = comment();
@@ -17,7 +18,10 @@ function renderReviewForm() {
     if (!rating) {
       return;
     }
-    photo();
+    const formData = await photo();
+    if (!formData) {
+      return;
+    }
 
     // DTO を作成
     const request: registerReviewRequest = {
@@ -30,6 +34,8 @@ function renderReviewForm() {
     registerReview(request)
       .then((response) => {
         console.log('Review registered successfully:', response);
+        // Server に写真を送る
+        postReviewPhoto(formData, response.reviewId);
       })
       .catch((error) => {
         console.error('Error registering review:', error);
@@ -113,22 +119,16 @@ async function photo() {
   img.src = imageData?.toString() || '';
   // CSS 때문에 class="loaded-image" 추가
   img.classList.add('loaded-image');
-
   document.getElementById('test-photo')?.appendChild(img);
 
   // FormData 객체를 생성하여 이미지 데이터를 서버로 전송할 준비
   const formData = new FormData();
-  // 요청에 image 라는 키로 Base64로 변환된 이미지 데이터를 formData에 추가
-  formData.append('image', imageData?.toString() || '');
+  // string($binary) 스펙은 multipart 파트에 파일 바이너리를 담아 전송하면 된다.
+  formData.append('image', files[0], files[0].name);
 
-  return;
+  console.log('FormData with image:', formData);
+  // 이제 서버로 송신하자
+  return formData;
 }
 
 export default renderReviewForm;
-
-// 이미지 업로드 테스트를 위한 curl 명령어 예시
-//    curl -X 'POST' \
-//   'http://localhost:5001/review/1/image/1' \
-//   -H 'accept: */*' \
-//   -H 'Content-Type: multipart/form-data' \
-//   -F 'image=@2026年1月キッチンカー.png;type=image/png'

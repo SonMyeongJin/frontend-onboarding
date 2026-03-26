@@ -2,7 +2,7 @@ import { getReviews } from 'src/features/getReviews';
 
 const getReviewRequest = {
   pageNumber: 1,
-  perPage: 10,
+  perPage: 15,
   productId: '1234',
 };
 
