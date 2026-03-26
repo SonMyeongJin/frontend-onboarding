@@ -35,6 +35,14 @@
   border-top-right-radius: 7px;
 }
 
+.loaded-image {
+  max-width: 100px;
+  margin: 10px;
+  border: #ef6419 1px solid;
+  border-radius: 10%;
+  box-shadow: #333 0px 0px 5px;
+}
+
 .error-message {
   margin-top: 5px;
   font-size: 20px;
