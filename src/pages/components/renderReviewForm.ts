@@ -2,34 +2,34 @@ import type { registerReviewRequest } from 'src/domain/dto/registerReviewRequest
 import { postReviewPhoto } from 'src/features/postReviewPhoto';
 import { registerReview } from 'src/features/registerReview';
 
-function renderReviewForm() {
+async function renderReviewForm() {
   const reviewForm = document.getElementById('review-form');
   if (!reviewForm) {
     return;
   }
-  reviewForm.addEventListener('submit', async (event) => {
+  const content = comment();
+  if (!content) {
+    return;
+  }
+  const rating = score();
+  if (!rating) {
+    return;
+  }
+  const formData = await photo();
+  if (!formData) {
+    return;
+  }
+  // DTO を作成
+  const request: registerReviewRequest = {
+    content,
+    customerId: '2',
+    productId: '1',
+    rating,
+  };
+
+  reviewForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    const content = comment();
-    if (!content) {
-      return;
-    }
-    const rating = score();
-    if (!rating) {
-      return;
-    }
-    const formData = await photo();
-    if (!formData) {
-      return;
-    }
-
-    // DTO を作成
-    const request: registerReviewRequest = {
-      content,
-      customerId: '2',
-      productId: '1',
-      rating,
-    };
     // server にリクエストを送る
     registerReview(request)
       .then((response) => {

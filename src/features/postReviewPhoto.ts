@@ -1,8 +1,4 @@
 function postReviewPhoto(formData: FormData, reviewId: string) {
-  const reviewForm = document.getElementById('review-form');
-  if (!reviewForm) {
-    return;
-  }
   const url = new URL(`http://localhost:5001/review/${reviewId}/image/1`);
 
   fetch(url, {
