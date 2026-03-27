@@ -1,7 +1,7 @@
 function postReviewLike(reviewId: string, custermerId: string) {
   const url = `http://localhost:5001/review/${reviewId}/like`;
 
-  fetch(url, {
+  return fetch(url, {
     body: JSON.stringify({ like: true }),
     headers: {
       accept: '*/*',
@@ -9,9 +9,17 @@ function postReviewLike(reviewId: string, custermerId: string) {
       'login-customer-id': custermerId,
     },
     method: 'POST',
-  });
-
-  console.log(`Liked review ${reviewId} by customer ${custermerId}`);
+  })
+    .catch(() => {
+      console.error(
+        `Failed to like review ${reviewId} by customer ${custermerId}`,
+      );
+      return false;
+    })
+    .then(() => {
+      console.log(`Liked review ${reviewId} by customer ${custermerId}`);
+      return true;
+    });
 }
 
 export { postReviewLike };

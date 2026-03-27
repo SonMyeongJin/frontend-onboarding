@@ -7,6 +7,7 @@ const getReviewRequest = {
   productId: '1234',
 };
 
+// biome-ignore lint/complexity/noExcessiveLinesPerFunction: test
 async function renderReviewItem() {
   const reviewSection = document.getElementById('review-list');
   if (!reviewSection) {
@@ -29,33 +30,37 @@ async function renderReviewItem() {
     const reviewerName = document.createElement('p');
     reviewerName.textContent = item.reviewerName;
     reviewerDiv.appendChild(reviewerName);
-
     const reviewDiv = document.createElement('div');
     const reviewRating = document.createElement('p');
     reviewRating.textContent = '★'.repeat(item.rating);
     reviewRating.classList.add('review-rating');
     reviewDiv.appendChild(reviewRating);
-
     const reviewContent = document.createElement('p');
     reviewContent.textContent = item.content;
     reviewContent.classList.add('review-content');
     reviewDiv.appendChild(reviewContent);
-
     reviewarticle.appendChild(reviewerDiv);
     reviewarticle.appendChild(reviewDiv);
     const hr = document.createElement('hr');
     reviewarticle.appendChild(hr);
     reviewUl.appendChild(reviewarticle);
-
     const countLike = document.createElement('p');
-    countLike.textContent = `いいね数: ${item.likeCount}`;
+    countLike.textContent = 'いいね数:';
     reviewDiv.appendChild(countLike);
+
+    const countLikeValue = document.createElement('span');
+    const likeCount = item.likeCount;
+    countLikeValue.textContent = likeCount.toString();
+    countLike.appendChild(countLikeValue);
 
     const likeButton = addLikeButton();
     reviewDiv.appendChild(likeButton);
-    likeButton.onclick = () => {
-      postReviewLike(item.reviewId, '2');
-      console.log(`Liked review ${item.reviewId}`);
+    likeButton.onclick = async () => {
+      const successLike = await postReviewLike(item.reviewId, '2');
+      if (successLike) {
+        console.log(`Liked review ${item.reviewId}`);
+        countLikeValue.textContent = (likeCount + 1).toString();
+      }
     };
   });
   reviewSection.innerHTML = '';
