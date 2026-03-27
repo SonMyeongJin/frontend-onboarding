@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="33a97ce7-e6eb-43e0-9fa8-10e5aaa8cdf3" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reviewRegister.html" beforeDir="false" afterPath="$PROJECT_DIR$/reviewRegister.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/components/renderReviewForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/renderReviewForm.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -18,6 +17,11 @@
     <execution />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="pokemon" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{

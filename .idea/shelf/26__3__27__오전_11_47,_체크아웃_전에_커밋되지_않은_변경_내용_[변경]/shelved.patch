@@ -1,0 +1,155 @@
+Index: src/pages/components/renderReviewForm.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import type { registerReviewRequest } from 'src/domain/dto/registerReviewRequest';\nimport { postReviewPhoto } from 'src/features/postReviewPhoto';\nimport { registerReview } from 'src/features/registerReview';\n\nfunction renderReviewForm() {\n  const reviewForm = document.getElementById('review-form');\n  if (!reviewForm) {\n    return;\n  }\n  reviewForm.addEventListener('submit', async (event) => {\n    event.preventDefault();\n\n    const content = comment();\n    if (!content) {\n      return;\n    }\n    const rating = score();\n    if (!rating) {\n      return;\n    }\n    const formData = await photo();\n    if (!formData) {\n      return;\n    }\n\n    // DTO を作成\n    const request: registerReviewRequest = {\n      content,\n      customerId: '2',\n      productId: '1',\n      rating,\n    };\n    // server にリクエストを送る\n    registerReview(request)\n      .then((response) => {\n        console.log('Review registered successfully:', response);\n        // Server に写真を送る\n        postReviewPhoto(formData, response.reviewId);\n      })\n      .catch((error) => {\n        console.error('Error registering review:', error);\n        alert('Failed to register review. Please try again later.');\n      });\n  });\n}\n\nfunction score() {\n  const ratingSelect = document.getElementById('score') as HTMLSelectElement;\n  const rating: number = Number(ratingSelect.value);\n  // validation\n  const errorSelect = document.getElementById(\n    'score-error',\n  ) as HTMLParagraphElement;\n  if (ratingSelect.value === '0') {\n    //alert('Please select a rating.');\n    errorSelect.textContent = 'おい、評価は入れない？';\n    return;\n  }\n  if (Number.isNaN(rating) || rating < 1 || rating > 5) {\n    // biome-ignore lint/suspicious/noAlert: test\n    alert('おい、ちょっと問題がありそう。評価は1から5の間で選んでよ。');\n    console.error('Invalid rating value:', rating);\n    return;\n  }\n  return rating;\n}\n\nfunction comment() {\n  const commentTextarea = document.getElementById(\n    'comment-textarea',\n  ) as HTMLTextAreaElement;\n  const content: string = commentTextarea.value;\n\n  //validation\n  const errorContent = document.getElementById(\n    'comment-error',\n  ) as HTMLParagraphElement;\n\n  if (content === '') {\n    errorContent.textContent = 'おい、コメント入れてよ';\n    return;\n  }\n\n  return content;\n}\n\nasync function photo() {\n  const imageInput = document.getElementById('photo') as HTMLInputElement;\n  // input type에 files함수 호출하면 list 를 반환한다.\n  const files = imageInput.files;\n  // validation\n  if (!files || files.length === 0) {\n    alert('おい、写真も入れない？');\n    return;\n  }\n\n  // FileReader 함수를 사용해서 파일을 읽고 Base64로 변환\n  // Promise 생성자에 콜백(executor)을 전달. resolve가 호출되면 Promise가 완료된다.\n  const imageData = await new Promise<string | ArrayBuffer | null>(\n    (resolve, reject) => {\n      // 파일을 읽기 위한 FileReader 인스턴스 생성\n      const reader = new FileReader();\n      // files[0] (첫 번째 파일)을 Base64 형식의 Data URL로 읽기 시작 (비동기)\n      reader.readAsDataURL(files[0]);\n      // 파일 읽기가 완료되면 onload 콜백이 실행된다\n      reader.onload = () => {\n        // reader.result에 Base64 Data URL이 담겨있고, 이걸 resolve로 넘겨서 Promise를 완료시킨다\n        resolve(reader.result);\n      };\n      reader.onerror = () => {\n        reject(new Error('Failed to read file'));\n      };\n    },\n  );\n  console.log('Base64 Image Data Object:', imageData);\n\n  // Base64로 변환된 이미지 데이터를 img 요소에 설정하여 페이지에 표시\n  const img = document.createElement('img');\n  img.src = imageData?.toString() || '';\n  // CSS 때문에 class=\"loaded-image\" 추가\n  img.classList.add('loaded-image');\n  document.getElementById('test-photo')?.appendChild(img);\n\n  // FormData 객체를 생성하여 이미지 데이터를 서버로 전송할 준비\n  const formData = new FormData();\n  // string($binary) 스펙은 multipart 파트에 파일 바이너리를 담아 전송하면 된다.\n  formData.append('image', files[0], files[0].name);\n\n  console.log('FormData with image:', formData);\n  // 이제 서버로 송신하자\n  return formData;\n}\n\nexport default renderReviewForm;\n
+===================================================================
+diff --git a/src/pages/components/renderReviewForm.ts b/src/pages/components/renderReviewForm.ts
+--- a/src/pages/components/renderReviewForm.ts	(revision f81d8a5fad3726e55c056866281145b30e4dc7f1)
++++ b/src/pages/components/renderReviewForm.ts	(date 1774579415903)
+@@ -1,5 +1,4 @@
+ import type { registerReviewRequest } from 'src/domain/dto/registerReviewRequest';
+-import { postReviewPhoto } from 'src/features/postReviewPhoto';
+ import { registerReview } from 'src/features/registerReview';
+ 
+ function renderReviewForm() {
+@@ -7,7 +6,7 @@
+   if (!reviewForm) {
+     return;
+   }
+-  reviewForm.addEventListener('submit', async (event) => {
++  reviewForm.addEventListener('submit', (event) => {
+     event.preventDefault();
+ 
+     const content = comment();
+@@ -18,10 +17,10 @@
+     if (!rating) {
+       return;
+     }
+-    const formData = await photo();
+-    if (!formData) {
+-      return;
+-    }
++    // const formData = await photo();
++    // if (!formData) {
++    //   return;
++    // }
+ 
+     // DTO を作成
+     const request: registerReviewRequest = {
+@@ -35,7 +34,7 @@
+       .then((response) => {
+         console.log('Review registered successfully:', response);
+         // Server に写真を送る
+-        postReviewPhoto(formData, response.reviewId);
++        //postReviewPhoto(formData, response.reviewId);
+       })
+       .catch((error) => {
+         console.error('Error registering review:', error);
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"33a97ce7-e6eb-43e0-9fa8-10e5aaa8cdf3\" name=\"변경\" comment=\"\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/reviewRegister.html\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/reviewRegister.html\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/pages/components/renderReviewForm.ts\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/pages/components/renderReviewForm.ts\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"ComposerSettings\">\n    <execution />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\">{\n  &quot;lastFilter&quot;: {\n    &quot;state&quot;: &quot;OPEN&quot;,\n    &quot;assignee&quot;: &quot;SonMyeongJin&quot;\n  }\n}</component>\n  <component name=\"GithubPullRequestsUISettings\">{\n  &quot;selectedUrlAndAccountId&quot;: {\n    &quot;url&quot;: &quot;git@github.com:/SonMyeongJin/template-mecaota-frontend.git&quot;,\n    &quot;accountId&quot;: &quot;686a0512-be03-4970-8b96-eaa6ba4de1cd&quot;\n  }\n}</component>\n  <component name=\"PhpWorkspaceProjectConfiguration\" interpreter_name=\"/opt/homebrew/Cellar/php/8.5.1_2/bin/php\" />\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 0\n}</component>\n  <component name=\"ProjectId\" id=\"3AsRSghwQH17MEiLF2wB3Fgrdp0\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n    <option name=\"sortKey\" value=\"BY_TIME_ASCENDING\" />\n  </component>\n  <component name=\"PropertiesComponent\">{\n  &quot;keyToString&quot;: {\n    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\n    &quot;git-widget-placeholder&quot;: &quot;mc-review-api&quot;,\n    &quot;last_opened_file_path&quot;: &quot;/Users/RU1129/IdeaProjects/ee&quot;,\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\n    &quot;nodejs_package_manager_path&quot;: &quot;bun&quot;,\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,\n    &quot;ts.external.directory.path&quot;: &quot;/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\n  }\n}</component>\n  <component name=\"SharedIndexes\">\n    <attachedChunks>\n      <set>\n        <option value=\"bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.26199.169\" />\n        <option value=\"bundled-js-predefined-d6986cc7102b-9c94529fcfe0-JavaScript-IU-252.26199.169\" />\n      </set>\n    </attachedChunks>\n  </component>\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"디폴트 작업\">\n      <changelist id=\"33a97ce7-e6eb-43e0-9fa8-10e5aaa8cdf3\" name=\"변경\" comment=\"\" />\n      <created>1773379293649</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1773379293649</updated>\n      <workItem from=\"1773379295082\" duration=\"3123000\" />\n      <workItem from=\"1773710800624\" duration=\"974000\" />\n      <workItem from=\"1774328628869\" duration=\"4701000\" />\n      <workItem from=\"1774486863868\" duration=\"329000\" />\n    </task>\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n</project>
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision f81d8a5fad3726e55c056866281145b30e4dc7f1)
++++ b/.idea/workspace.xml	(date 1774579520229)
+@@ -4,10 +4,8 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="33a97ce7-e6eb-43e0-9fa8-10e5aaa8cdf3" name="변경" comment="">
++    <list default="true" id="550f6e1f-b751-4327-a507-841e2f259060" name="변경" comment="">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/reviewRegister.html" beforeDir="false" afterPath="$PROJECT_DIR$/reviewRegister.html" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/pages/components/renderReviewForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/renderReviewForm.ts" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -18,72 +16,24 @@
+     <execution />
+   </component>
+   <component name="Git.Settings">
++    <option name="RECENT_BRANCH_BY_REPOSITORY">
++      <map>
++        <entry key="$PROJECT_DIR$" value="mc-review-api" />
++      </map>
++    </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+-  <component name="GitHubPullRequestSearchHistory">{
+-  &quot;lastFilter&quot;: {
+-    &quot;state&quot;: &quot;OPEN&quot;,
+-    &quot;assignee&quot;: &quot;SonMyeongJin&quot;
+-  }
+-}</component>
+-  <component name="GithubPullRequestsUISettings">{
+-  &quot;selectedUrlAndAccountId&quot;: {
+-    &quot;url&quot;: &quot;git@github.com:/SonMyeongJin/template-mecaota-frontend.git&quot;,
+-    &quot;accountId&quot;: &quot;686a0512-be03-4970-8b96-eaa6ba4de1cd&quot;
+-  }
+-}</component>
+-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="/opt/homebrew/Cellar/php/8.5.1_2/bin/php" />
+-  <component name="ProjectColorInfo">{
+-  &quot;associatedIndex&quot;: 0
+-}</component>
+-  <component name="ProjectId" id="3AsRSghwQH17MEiLF2wB3Fgrdp0" />
+-  <component name="ProjectViewState">
+-    <option name="hideEmptyMiddlePackages" value="true" />
+-    <option name="showLibraryContents" value="true" />
+-    <option name="sortKey" value="BY_TIME_ASCENDING" />
+-  </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;mc-review-api&quot;,
+-    &quot;last_opened_file_path&quot;: &quot;/Users/RU1129/IdeaProjects/ee&quot;,
+-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;nodejs_package_manager_path&quot;: &quot;bun&quot;,
+-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+-    &quot;ts.external.directory.path&quot;: &quot;/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "git-widget-placeholder": "mc-review-api",
++    "node.js.detected.package.eslint": "true",
++    "node.js.detected.package.tslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.tslint": "(autodetect)",
++    "ts.external.directory.path": "/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external"
+   }
+-}</component>
+-  <component name="SharedIndexes">
+-    <attachedChunks>
+-      <set>
+-        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.26199.169" />
+-        <option value="bundled-js-predefined-d6986cc7102b-9c94529fcfe0-JavaScript-IU-252.26199.169" />
+-      </set>
+-    </attachedChunks>
+-  </component>
++}]]></component>
+   <component name="TaskManager">
+-    <task active="true" id="Default" summary="디폴트 작업">
+-      <changelist id="33a97ce7-e6eb-43e0-9fa8-10e5aaa8cdf3" name="변경" comment="" />
+-      <created>1773379293649</created>
+-      <option name="number" value="Default" />
+-      <option name="presentableId" value="Default" />
+-      <updated>1773379293649</updated>
+-      <workItem from="1773379295082" duration="3123000" />
+-      <workItem from="1773710800624" duration="974000" />
+-      <workItem from="1774328628869" duration="4701000" />
+-      <workItem from="1774486863868" duration="329000" />
+-    </task>
+     <servers />
+   </component>
+-  <component name="TypeScriptGeneratedFilesManager">
+-    <option name="version" value="3" />
+-  </component>
+ </project>
+\ No newline at end of file

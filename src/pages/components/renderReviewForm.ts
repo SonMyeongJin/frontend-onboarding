@@ -53,7 +53,7 @@ function score() {
   ) as HTMLParagraphElement;
   if (ratingSelect.value === '0') {
     //alert('Please select a rating.');
-    errorSelect.textContent = 'おい、評価は入れない？';
+    errorSelect.textContent = '評価を入れてください';
     return;
   }
   if (Number.isNaN(rating) || rating < 1 || rating > 5) {
@@ -77,7 +77,7 @@ function comment() {
   ) as HTMLParagraphElement;
 
   if (content === '') {
-    errorContent.textContent = 'おい、コメント入れてよ';
+    errorContent.textContent = 'コメントも入れてください';
     return;
   }
 
