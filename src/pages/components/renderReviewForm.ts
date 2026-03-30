@@ -23,7 +23,7 @@ async function renderReviewForm() {
   const request: registerReviewRequest = {
     content,
     customerId: '2',
-    productId: '1',
+    productId: '1234',
     rating,
   };
 

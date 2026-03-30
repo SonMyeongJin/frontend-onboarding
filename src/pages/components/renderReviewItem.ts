@@ -3,7 +3,7 @@ import { postReviewLike } from 'src/features/postReviewLike';
 
 const getReviewRequest = {
   pageNumber: 1,
-  perPage: 15,
+  perPage: 10,
   productId: '1234',
 };
 
@@ -61,7 +61,13 @@ async function renderReviewItem() {
       const successLike = await postReviewLike(item.reviewId, '2');
       if (successLike) {
         console.log(`Liked review ${item.reviewId}`);
-        countLikeValue.textContent = (likeCount + 1).toString();
+        // 에니메이션 실행 (0.5초)
+        countLikeValue.classList.add('like-animation');
+        // 0.25 초 뒤에 좋아요수 증가
+        setTimeout(() => {
+          countLikeValue.textContent = (likeCount + 1).toString();
+        }, 250);
+        // 남은 0.25초 뒤에 에니메이션 제거
       }
     };
   });
