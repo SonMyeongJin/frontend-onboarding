@@ -45,10 +45,12 @@ async function renderReviewItem() {
     reviewarticle.appendChild(hr);
     reviewUl.appendChild(reviewarticle);
     const countLike = document.createElement('p');
+    countLike.classList.add('like-count-text');
     countLike.textContent = 'いいね数:';
     reviewDiv.appendChild(countLike);
 
     const countLikeValue = document.createElement('span');
+    countLikeValue.classList.add('like-count');
     const likeCount = item.likeCount;
     countLikeValue.textContent = likeCount.toString();
     countLike.appendChild(countLikeValue);
