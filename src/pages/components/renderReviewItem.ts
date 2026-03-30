@@ -61,6 +61,9 @@ async function renderReviewItem() {
       const successLike = await postReviewLike(item.reviewId, '2');
       if (successLike) {
         console.log(`Liked review ${item.reviewId}`);
+
+        likeButton.classList.add('btn', 'btn-warning', 'btn-sm', 'mt-2');
+
         // 에니메이션 실행 (0.5초)
         countLikeValue.classList.add('like-animation');
         // 0.25 초 뒤에 좋아요수 증가
