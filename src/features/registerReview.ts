@@ -1,6 +1,14 @@
 import type { registerReviewRequest } from 'src/domain/dto/registerReviewRequest';
 import type { registerReviewResponse } from 'src/domain/dto/registerReviewResponse';
 
+const HTTP_STATUS = {
+  badRequest: 400,
+  forbidden: 403,
+  internalServerError: 500,
+  notFound: 404,
+  unauthorized: 401,
+} as const;
+
 async function registerReview(
   registerReviewRequest: registerReviewRequest,
 ): Promise<registerReviewResponse> {
@@ -21,15 +29,15 @@ async function registerReview(
   // HTTP 通信は成功したが、サーバーがエラーを返した場合の処理
   if (!response.ok) {
     switch (response.status) {
-      case 400:
+      case HTTP_STATUS.badRequest:
         throw new Error(`Bad Request: ${response.statusText}`);
-      case 401:
+      case HTTP_STATUS.unauthorized:
         throw new Error(`Unauthorized: ${response.statusText}`);
-      case 403:
+      case HTTP_STATUS.forbidden:
         throw new Error(`Forbidden: ${response.statusText}`);
-      case 404:
+      case HTTP_STATUS.notFound:
         throw new Error(`Not Found: ${response.statusText}`);
-      case 500:
+      case HTTP_STATUS.internalServerError:
         throw new Error(`Internal Server Error: ${response.statusText}`);
       default:
         throw new Error(`Failed to register review: ${response.statusText}`);

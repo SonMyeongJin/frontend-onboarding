@@ -13,5 +13,3 @@ export const IndexPage: FC = memo(() => {
   );
 });
 IndexPage.displayName = 'IndexPage';
-
-export default IndexPage;

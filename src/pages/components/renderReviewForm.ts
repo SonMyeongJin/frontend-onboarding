@@ -2,6 +2,11 @@ import type { registerReviewRequest } from 'src/domain/dto/registerReviewRequest
 import { postReviewPhoto } from 'src/features/postReviewPhoto';
 import { registerReview } from 'src/features/registerReview';
 
+const RATING = {
+  max: 5,
+  min: 1,
+} as const;
+
 async function renderReviewForm() {
   const reviewForm = document.getElementById('review-form');
   if (!reviewForm) {
@@ -39,7 +44,13 @@ async function renderReviewForm() {
       })
       .catch((error) => {
         console.error('Error registering review:', error);
-        alert('Failed to register review. Please try again later.');
+        const submitError = document.getElementById(
+          'submit-error',
+        ) as HTMLParagraphElement | null;
+        if (submitError) {
+          submitError.textContent =
+            'レビュー登録に失敗しました。しばらくしてからもう一度お試しください。';
+        }
       });
   });
 }
@@ -56,9 +67,8 @@ function score() {
     errorSelect.textContent = '評価を入れてください';
     return;
   }
-  if (Number.isNaN(rating) || rating < 1 || rating > 5) {
-    // biome-ignore lint/suspicious/noAlert: test
-    alert('おい、ちょっと問題がありそう。評価は1から5の間で選んでよ。');
+  if (Number.isNaN(rating) || rating < RATING.min || rating > RATING.max) {
+    errorSelect.textContent = `評価は${RATING.min}から${RATING.max}の間で選んでください`;
     console.error('Invalid rating value:', rating);
     return;
   }
@@ -90,7 +100,12 @@ async function photo() {
   const files = imageInput.files;
   // validation
   if (!files || files.length === 0) {
-    alert('おい、写真も入れない？');
+    const photoError = document.getElementById(
+      'photo-error',
+    ) as HTMLParagraphElement | null;
+    if (photoError) {
+      photoError.textContent = '写真を選択してください';
+    }
     return;
   }
 

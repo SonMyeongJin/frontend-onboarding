@@ -8,6 +8,9 @@ const getReviewRequest = {
   productId: '1234',
 };
 
+const LIKE_ANIMATION_DELAY_MS = 250;
+const LIKE_ANIMATION_RESET_MS = 1000;
+
 async function renderReviewItem() {
   const reviewSection = document.getElementById('review-list');
   if (!reviewSection) {
@@ -148,7 +151,7 @@ function bindLikeButton(
     countLikeValue.classList.add('like-animation');
     setTimeout(() => {
       countLikeValue.textContent = currentLikeCount.toString();
-    }, 250);
+    }, LIKE_ANIMATION_DELAY_MS);
     setTimeout(() => {
       likeButton.classList.remove(
         'like-animation,btn',
@@ -156,7 +159,7 @@ function bindLikeButton(
         'btn-sm',
         'mt-2',
       );
-    }, 1000);
+    }, LIKE_ANIMATION_RESET_MS);
   };
 }
 

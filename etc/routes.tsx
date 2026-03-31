@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import IndexPage from 'src/etc/index';
+import { IndexPage } from './index';
 
 export const Router: FC = () => {
   return (

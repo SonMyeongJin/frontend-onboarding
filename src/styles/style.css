@@ -1,0 +1,688 @@
+@import url("https://fonts.googleapis.com/css2?family=DotGothic16&display=swap");
+
+/* 自己紹介 */
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: rgb(255 255 128 / 0.2);
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes addressGlow {
+  0% {
+    transform: translateY(0) rotate(-1deg);
+    box-shadow:
+      0 2px 10px rgb(65 230 161 / 0.25),
+      0 0 0 0 #f1ff32;
+    filter: brightness(1.05);
+  }
+  50% {
+    transform: translateY(-1px) rotate(1deg);
+    box-shadow:
+      0 6px 18px rgb(65 230 161 / 0.35),
+      0 0 18px 0 #f1ff32;
+    filter: brightness(1.15);
+  }
+  100% {
+    transform: translateY(0) rotate(-1deg);
+    box-shadow:
+      0 2px 10px rgb(65 230 161 / 0.25),
+      0 0 0 0 #f1ff32;
+    filter: brightness(1.05);
+  }
+}
+
+@keyframes sparkleRun {
+  0% {
+    opacity: 0;
+    transform: translateX(-120%) rotate(0deg);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(120%) rotate(180deg);
+  }
+}
+
+address {
+  position: relative;
+  display: inline-block;
+  padding: 8px 18px;
+  font-style: normal;
+  font-weight: 900;
+  color: #014b26;
+  letter-spacing: 0.04em;
+  background: linear-gradient(90deg, #41e6a1 0%, #9ddbb9 50%, #f1ff32 100%);
+  background-size: 200% 100%;
+  border: 3px solid #41e6a1;
+  border-radius: 999px;
+  animation: addressGlow 1.2s ease-in-out infinite;
+}
+
+address::after {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  color: #1e7bec;
+  text-shadow: 0 0 10px #f1ff32;
+  pointer-events: none;
+  content: "✦";
+  transform: translateY(-50%);
+  animation: sparkleRun 1.1s linear infinite;
+}
+
+.introduction {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  background-color: #f6f8df;
+
+  border: #f1ff32 solid;
+}
+
+/* 警告 */
+.warning {
+  background-color: orange;
+}
+
+.warning__ani {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  background-color: orange;
+}
+
+.warning__ani p {
+  display: inline-block;
+  padding: 8px 0;
+  margin: 0;
+  animation: 横にブアアアン 5s linear infinite;
+  will-change: transform;
+}
+
+@keyframes 横にブアアアン {
+  0% {
+    transform: translateX(-100%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100vw);
+    opacity: 1;
+  }
+}
+
+/* 目次 */
+.header {
+  position: sticky;
+  top: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
+  background-color: #9ddbb9;
+  border: 4px solid #086135;
+  border-radius: 20px;
+}
+.navi-title {
+  margin-left: 10px;
+  font-weight: 800;
+  color: #014b26;
+  background-color: #9ddbb9;
+}
+.navi-yoso {
+  display: flex;
+  justify-content: space-around;
+  background-color: #9ddbb9;
+}
+.navi-yoso li {
+  padding: 3px;
+  border: #097a25 solid;
+  border-radius: 10px;
+  transition: transform 0.3s;
+}
+.navi-yoso li:hover {
+  transform: scale(1.3);
+}
+
+/* profile 写真 */
+.profile-container {
+  display: flex;
+  justify-content: center;
+}
+.profile-picture {
+  border: 4px solid #b2c9e6;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+.profile-picture:hover {
+  transform: scale(1.08) rotate(-3deg);
+}
+
+/* 自己紹介のBOX */
+.main {
+  display: flex;
+}
+#information {
+  padding: 10px 100px;
+  margin: 30px;
+  background-color: #c2f0dd;
+  border: 4px solid #b2c9e6;
+}
+
+dt {
+  display: inline-flex;
+  padding-right: 10px;
+
+  padding-left: 10px;
+
+  margin-top: 30px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  font-weight: bold;
+  border: 2px solid #b2c9e6;
+
+  border-radius: 20px;
+}
+
+/* skill */
+#tech {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.tech__content li {
+  margin-right: 30px;
+  margin-left: 30px;
+}
+
+@keyframes うんうん {
+  0% {
+    transform: scale(0.8) rotate(-10deg);
+  }
+  50% {
+    transform: scale(1.5) rotate(10deg);
+  }
+  100% {
+    transform: scale(0.8) rotate(-10deg);
+  }
+}
+
+.javascript::before,
+.javascript::after {
+  display: inline-block;
+  content: "🔥";
+  animation: うんうん 1s infinite;
+}
+
+/* 🎤好きな歌 */
+#favorite {
+  display: grid;
+  grid-row-start: auto;
+  gap: 20px;
+}
+iframe {
+  width: 200px;
+  max-width: 100%;
+  height: 125px;
+  border-radius: 16px;
+}
+
+/* 日記 */
+.daily__table {
+  display: block;
+}
+/* 下線 */
+.daily__table__head th {
+  border-bottom: #1e7bec solid;
+}
+.daily__table__body td {
+  padding-top: 1%;
+  padding-bottom: 1%;
+  border-bottom: #014b26 solid;
+  border-left: #014b26 solid;
+}
+
+.daily__table__body td:last-child {
+  border-right: #014b26 solid;
+}
+
+/* 横線 */
+.daily__table__head th + th {
+  border-left: #1e7bec solid;
+}
+
+/* footer */
+footer {
+  position: sticky;
+  bottom: 20px;
+  padding-left: 20px;
+  background-color: #9ddbb9;
+  border: 4px solid #086135;
+  border-radius: 20px;
+}
+
+footer input,
+footer button,
+footer label,
+footer small,
+footer div {
+  background-color: #9ddbb9;
+}
+
+@keyframes ピョンピョン {
+  0% {
+    transform: rotate(3deg);
+  }
+  50% {
+    transform: rotate(-3deg);
+  }
+  100% {
+    transform: rotate(3deg);
+  }
+}
+
+h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+mark {
+  display: inline-block;
+  transform-origin: center;
+  animation: ピョンピョン 1s infinite;
+}
+
+* {
+  box-sizing: border-box;
+
+  text-decoration: none;
+}
+
+/* -------------------------------- AI -------------------------------------*/
+/* -------------------------------- ポケモン -------------------------------------*/
+#pokemon,
+#guess-pokemon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.pokemon__table,
+.guess-pokemon__table {
+  table-layout: fixed;
+  border-collapse: collapse;
+  border: 2px solid #e7ff5f;
+}
+
+.pokemon__table th,
+.pokemon__table td,
+.guess-pokemon__table th,
+.guess-pokemon__table td {
+  text-align: center;
+  word-break: break-word;
+  border-right: solid #fd0101;
+  border-left: solid #fd0101;
+}
+
+.pokemon__table thead,
+.guess-pokemon__table thead {
+  color: #fd0101;
+  background-color: #fffb03;
+  border: #fd0101 solid;
+}
+
+body {
+  font-family: "DotGothic16", cursive;
+  color: #333;
+  background-color: #f0f0f0;
+}
+
+.pokemon-battle {
+  width: 80%;
+  padding: 20px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 2px solid #000;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+  font-size: 2em;
+  color: #ffcc00;
+  text-align: center;
+  text-shadow: 2px 2px #000;
+}
+
+h3 {
+  font-size: 1.5em;
+  color: #ff6600;
+  text-align: center;
+}
+
+img {
+  display: block;
+  width: 100px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.status,
+.skill {
+  padding: 0;
+  margin: 10px 0;
+  text-align: center;
+  list-style-type: none;
+}
+
+.status li,
+.skill li {
+  padding: 10px;
+  margin: 5px 0;
+  font-size: 1.2em;
+  background-color: #e0e0e0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.skill li button {
+  padding: 10px 15px;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: #ffcc00;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.skill li button:hover {
+  background-color: #ff9900;
+}
+
+/* ============== ゲームボーイ金銀風 ポケモンバトル ============== */
+
+.pokemon-battle {
+  position: relative;
+  max-width: 900px;
+  padding: 16px;
+  overflow: hidden;
+  font-family: "DotGothic16", "Press Start 2P", monospace;
+  image-rendering: pixelated;
+  background: linear-gradient(
+    180deg,
+    #88c870 0%,
+    #b8d8a0 40%,
+    #f8f8d8 60%,
+    #d0e898 100%
+  );
+  border: 6px solid #303030;
+  border-radius: 0;
+  box-shadow:
+    inset 0 0 0 3px #505050,
+    inset 0 0 0 6px #181818,
+    8px 8px 0 #181818;
+}
+
+.pokemon-battle::before {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  content: "";
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+}
+
+.pokemon-battle h2 {
+  padding: 6px 16px;
+  margin-bottom: 12px;
+  font-size: 1.2em;
+  color: #181818;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0 #c8d8a0;
+  background: linear-gradient(180deg, #f8e860 0%, #e8b830 100%);
+  border: 3px solid #785018;
+}
+
+.pokemon-battle > p {
+  padding: 6px;
+  margin-bottom: 16px;
+  font-size: 1em;
+  color: #f8f8f8;
+  text-align: center;
+  letter-spacing: 3px;
+  text-shadow: 1px 1px 0 #000;
+  background: #303030;
+  border: 2px solid #181818;
+}
+
+/* バトルフィールド - 横並び */
+.pokemon-battle .battle-field {
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.pokemon-battle .pokemon-info {
+  position: relative;
+  flex: 1;
+  padding: 12px;
+  margin-bottom: 12px;
+  background: linear-gradient(180deg, #e0f0d0 0%, #c0d8a0 100%);
+  border: 3px solid #485830;
+  border-left: 6px solid;
+}
+
+.pokemon-battle .pokemon-info.zenigame {
+  border-left-color: #3890f8;
+}
+
+.pokemon-battle .pokemon-info.hitokage {
+  border-left-color: #f85830;
+}
+
+.pokemon-battle .pokemon-info.disabled {
+  border-left: none;
+}
+
+.pokemon-battle h3 {
+  padding-bottom: 4px;
+  margin: 0 0 8px 0;
+  font-size: 1.1em;
+  color: #181818;
+  text-align: left;
+  text-shadow: 1px 1px 0 #c8d8a0;
+  border-bottom: 2px dashed #485830;
+}
+
+/* ポケモン画像 - ドット絵風 */
+.pokemon-battle img {
+  width: 96px;
+  height: 96px;
+  padding: 4px;
+  image-rendering: pixelated;
+  background: #f8f8f8;
+  border: 3px solid #303030;
+  box-shadow: 3px 3px 0 #181818;
+  transition: transform 0.1s steps(2);
+}
+
+.pokemon-battle #zenigame img {
+  animation: gb-idle-left 0.8s steps(2) infinite;
+}
+
+.pokemon-battle #hitokage img {
+  animation: gb-idle-right 0.8s steps(2) infinite;
+}
+
+@keyframes gb-idle-left {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes gb-idle-right {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+/* ステータス - HPバー風 */
+.pokemon-battle .status {
+  padding: 6px 10px;
+  margin: 8px 0;
+  background: #f8f0c8;
+  border: 2px solid #785018;
+}
+
+.pokemon-battle .status li {
+  padding: 2px 4px;
+  margin: 2px 0;
+  font-size: 0.75em;
+  color: #303030;
+  text-align: left;
+  letter-spacing: 1px;
+  background: none;
+  border: none;
+  border-radius: 0;
+}
+
+.pokemon-battle .status li:first-child {
+  position: relative;
+  padding-bottom: 6px;
+  font-weight: bold;
+  color: #28a028;
+}
+
+.pokemon-battle .status li:first-child::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: calc(attr(data-hp number, 100) * 1%); /* attr(data-hp) */
+  height: 4px;
+  content: "";
+  background: #30b830;
+  border: 1px solid #181818;
+  box-shadow: inset 0 1px 0 #78f878;
+}
+
+/* スキルボタン - 金銀の技選択風 */
+.pokemon-battle .skill {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  padding: 8px;
+  background: #f8f8f8;
+  border: 3px solid #303030;
+  box-shadow: inset 0 0 0 2px #a0a0a0;
+}
+
+.pokemon-battle .skill li {
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+}
+
+.pokemon-battle .skill li button {
+  position: relative;
+  width: 100%;
+  padding: 8px 6px;
+  font-family: "DotGothic16", "Press Start 2P", monospace;
+  font-size: 0.8em;
+  color: #181818;
+  letter-spacing: 1px;
+  cursor: pointer;
+  background: #f8f8f8;
+  border: 2px solid #606060;
+  border-radius: 0;
+  transition: none;
+}
+
+.pokemon-battle .skill li button::before {
+  margin-right: 4px;
+  font-size: 0.6em;
+  content: "▶";
+  opacity: 0;
+  transition: none;
+}
+
+.pokemon-battle .skill li button:hover {
+  color: #f8f8f8;
+  background: #303030;
+  box-shadow: none;
+}
+
+.pokemon-battle .skill li button:hover::before {
+  opacity: 1;
+}
+
+.pokemon-battle .skill li button:active {
+  color: #f8e860;
+  background: #181818;
+  transform: scale(0.97);
+}
+
+/* タイプカラー */
+.pokemon-battle #zenigame .skill li button:hover {
+  color: #f8f8f8;
+  background: #3890f8;
+  border-color: #1860a8;
+}
+
+.pokemon-battle #hitokage .skill li button:hover {
+  color: #f8f8f8;
+  background: #f85830;
+  border-color: #a82800;
+}
+
+/* レトロなスキャンライン効果 */
+.pokemon-battle::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  pointer-events: none;
+  content: "";
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 1px,
+    rgba(0, 0, 0, 0.015) 1px,
+    rgba(0, 0, 0, 0.015) 2px
+  );
+}

@@ -4,7 +4,42 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6fb7675-b68d-4e0e-b59a-9dafb1d1a697" name="변경" comment="" />
+    <list default="true" id="b6fb7675-b68d-4e0e-b59a-9dafb1d1a697" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/26__3__27___11_47__________.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/26__3__27__오전_11_47,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/26__3__27__오전_11_47,_체크아웃_전에_커밋되지_않은_변경_내용_[변경]1/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/etc/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/review.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reviewRegister.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/onPageLoad.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/domain/dto/getReviewRequest.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/domain/dto/getReviewResponse.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/domain/dto/registerReviewRequest.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/domain/dto/registerReviewResponse.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/domain/reivew.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/deleteReview.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/getReviews.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/postReviewLike.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/postReviewPhoto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/registerReview.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/components/renderReviewForm.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/components/renderReviewItem.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/reviewList.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/reviewRegister.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/routes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/etc/routes.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/favicon.svg" beforeDir="false" afterPath="$PROJECT_DIR$/etc/favicon.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/molecules/bananaButton/index.stories.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/etc/bananaButton/index.stories.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/molecules/bananaButton/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/etc/bananaButton/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/etc/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vite-env.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/etc/vite-env.d.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,22 +56,22 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "SonMyeongJin"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;SonMyeongJin&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "git@github.com:/SonMyeongJin/template-mecaota-frontend.git",
-    "accountId": "686a0512-be03-4970-8b96-eaa6ba4de1cd"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:/SonMyeongJin/template-mecaota-frontend.git&quot;,
+    &quot;accountId&quot;: &quot;686a0512-be03-4970-8b96-eaa6ba4de1cd&quot;
   }
-}]]></component>
+}</component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="/opt/homebrew/Cellar/php/8.5.1_2/bin/php" />
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="3BVxGxRwsma9WCmMEb7uzTtlJeH" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
@@ -48,10 +83,12 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "mc-review-api",
+    "git-widget-placeholder": "pokemon 병합 중에 #2개",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "bun",
-    "ts.external.directory.path": "/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "ts.external.directory.path": "/Users/RU1129/IdeaProjects/연수/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
