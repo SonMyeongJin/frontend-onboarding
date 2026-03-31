@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="/src/styles/reviewList.css" />
+  <link rel="stylesheet" href="/src/styles/navbar.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>morecon review MJ</title>
+  <link rel="shortcut icon" href="https://d28qg0el9tv5wv.cloudfront.net/favicon.ico" type="image/x-icon" />
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/app/main.ts"></script>
+
+  <nav class="navbar">
+    <ul>
+      <div class="nav-left">
+        <li><a href="/index.html">MYEONGJINCON</a></li>
+      </div>
+
+      <div class="nav-right">
+        <li><a href="/review.html">お買い物ガイド</a></li>
+        <li><a href="/review.html">メルマガ</a></li>
+        <li><a href="/review.html">お気に入り</a></li>
+        <li><a href="/review.html">マイページ</a></li>
+      </div>
+    </ul>
+  </nav>
+
+  <input type="text" placeholder="商品を検索" />
+
+  <hr />
+
+  <section>
+    <a href="/reviewRegister.html" class="review-register-link">新規レビューを書き込む</a>
+  </section>
+
+  <hr />
+
+  <section>
+    <h1 class="review-title">お客様からのレビュー</h1>
+
+    <hr />
+
+    <section id="review-list">
+      <div>
+        <!-- TSからレビューがここに表示されます -->
+      </div>
+    </section>
+  </section>
+</body>
+
+</html>

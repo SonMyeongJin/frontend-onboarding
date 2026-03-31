@@ -22,9 +22,14 @@ function onSubmitHandler(_e: SubmitEvent) {
 
   console.log(input.value);
 
-  alert(
-    'Thnakyou for 応援！！このメッセージはテレパシーで伝えられました！(実際に渡されたかどうかは誰も知らない)',
-  );
+  const message =
+    'Thnakyou for 応援！！このメッセージはテレパシーで伝えられました！(実際に渡されたかどうかは誰も知らない)';
+  const messageElement = document.getElementById('footer-submit-message');
+  if (messageElement) {
+    messageElement.textContent = message;
+  } else {
+    console.info(message);
+  }
 }
 
 export { setupFooterSubmit };

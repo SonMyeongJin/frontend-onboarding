@@ -11,6 +11,15 @@ const hint: string[] = [
   'なんとなく387回挑戦すれば正解に近づくかもしれない? ^_^',
 ];
 
+function showGuessFavoriteMessage(message: string) {
+  const messageElement = document.getElementById('guess-favorite-message');
+  if (messageElement) {
+    messageElement.textContent = message;
+  } else {
+    console.info(message);
+  }
+}
+
 // DomLoaderによって呼ばれるとき（一回だけ）呼ばれる。
 function setupGuessFavorite() {
   // id="~"を持っている要素を持ってくる。形はHTMLFormElement！
@@ -50,7 +59,7 @@ async function onGuessSubmitHandler(e: SubmitEvent) {
 
   // Pokemonのidを見て、正しいかどうかを判断してAlertだけする。
   if (pokemon.id === correctPokemon) {
-    alert(`Correct! The pokemon is ${pokemon.name}!`);
+    showGuessFavoriteMessage(`Correct! The pokemon is ${pokemon.name}!`);
   } else {
     // add hint
     // hintは答えが間違ったとき、５回ヒントをする。
@@ -58,7 +67,7 @@ async function onGuessSubmitHandler(e: SubmitEvent) {
     const hintIndex = inputPokemonInfoLocation.children.length
       ? Math.min(inputPokemonInfoLocation.children.length - 1, hint.length - 1)
       : 0;
-    alert(`Wrong! Here's a hint: ${hint[hintIndex]}`);
+    showGuessFavoriteMessage(`Wrong! Here's a hint: ${hint[hintIndex]}`);
   }
 }
 

@@ -1,5 +1,14 @@
 import { getPokemon, type Pokemon } from '../../../entities/pokemon/api';
 
+function showGuessRandomMessage(message: string) {
+  const messageElement = document.getElementById('guess-random-message');
+  if (messageElement) {
+    messageElement.textContent = message;
+  } else {
+    console.info(message);
+  }
+}
+
 // DomLoaderによって呼ばれるとき（一回だけ）呼ばれる。
 async function setupGuessRandom() {
   // id="~"を持っている要素を持ってくる。形はHTMLFormElement！
@@ -58,9 +67,9 @@ function onGuessRandomSubmitHandler(
   const userAnswer = String(input.value);
   // それでStringたちを比べて、正しいかどうかを判断する。
   if (userAnswer === correctPokemonName) {
-    alert(`Correct! The pokemon is ${userAnswer}!`);
+    showGuessRandomMessage(`Correct! The pokemon is ${userAnswer}!`);
   } else {
-    alert('Wrong! Try again!');
+    showGuessRandomMessage('Wrong! Try again!');
   }
 }
 

@@ -1,3 +1,3 @@
-import { onLoadHandler } from './init/onLoadHandler';
+import { onPageLoad } from './onPageLoad';
 
-document.addEventListener('DOMContentLoaded', onLoadHandler);
+document.addEventListener('DOMContentLoaded', onPageLoad);

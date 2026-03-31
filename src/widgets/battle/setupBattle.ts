@@ -2,17 +2,32 @@
 // blue = ゼニガメ / squirtle / 꼬부기
 // red = ヒトカゲ / charmander / 파이리
 
-let blueHP = 100;
+const INITIAL_HP = 100;
+const DAMAGE_MULTIPLIER = 10;
+const SKILL_POWER_LOW = 1;
+const SKILL_POWER_MEDIUM = 2;
+const SKILL_POWER_HIGH = 3;
+const SKILL_POWER_MAX = 4;
+const SKILL_POWER = [
+  SKILL_POWER_LOW,
+  SKILL_POWER_MEDIUM,
+  SKILL_POWER_HIGH,
+  SKILL_POWER_MAX,
+  SKILL_POWER_LOW,
+  SKILL_POWER_MEDIUM,
+  SKILL_POWER_HIGH,
+  SKILL_POWER_MAX,
+] as const;
+
+let blueHP = INITIAL_HP;
 const blueAttack = 10;
 const blueDefense = 60;
 // const _blueSpeed = 15;
 
-let redHP = 100;
+let redHP = INITIAL_HP;
 const redAttack = 20;
 const redDefense = 30;
 // const _redSpeed = 30;
-
-const skillPower: number[] = [1, 2, 3, 4, 1, 2, 3, 4];
 
 let blueTurn: boolean = true; // true: blue's turn, false: red's turn
 
@@ -31,6 +46,51 @@ const hitokageSection = document.getElementById('hitokage');
 const blueHpElement = document.getElementById('blueHP'); // id="blueHP" の要素を取得して
 const blueHpListElement = blueHpElement?.parentElement; // その要素の親を取得して
 
+function clampHp(hp: number) {
+  return Math.max(0, hp);
+}
+
+function renderHp(
+  hpElement: HTMLElement | null,
+  hpListElement: HTMLElement | null | undefined,
+  hp: number,
+) {
+  if (!hpElement) {
+    return;
+  }
+  const hpText = hp.toFixed(0).toString();
+  hpElement.innerText = hpText;
+  if (hpListElement) {
+    hpListElement.dataset.hp = hpText;
+  }
+}
+
+function showBattleMessage(message: string) {
+  const messageElement = document.getElementById('battle-message');
+  if (messageElement) {
+    messageElement.textContent = message;
+  } else {
+    console.info(message);
+  }
+}
+
+function applyDamage(
+  attackerAttack: number,
+  defenderDefense: number,
+  skillPower: number,
+  target: 'blue' | 'red',
+) {
+  const damage = HpCalculator(attackerAttack, defenderDefense, skillPower);
+  if (target === 'blue') {
+    blueHP = clampHp(blueHP - damage);
+    renderHp(blueHpElement, blueHpListElement, blueHP);
+    return;
+  }
+
+  redHP = clampHp(redHP - damage);
+  renderHp(redHpElement, hpListElement, redHP);
+}
+
 function setupBattle() {
   // [<button>たきのぼり</button>, <button>みずでっぽう</button>, <button>あわ</button>, <button>ハイドロポンプ</button>]
   // forEach : 各配列の要素
@@ -43,52 +103,17 @@ function setupBattle() {
 }
 
 function onSkillClickHandler(index: number) {
-  // レッドターンならここに引っかかり
-  if (!blueTurn) {
-    // 該当スキルボタンのダメージを数値化してblueHPを削減する。
-    blueHP -= HpCalculator(redAttack, blueDefense, skillPower[index]);
-    // HPがマイナスになるのを防ぐため
-    if (blueHP < 0) {
-      blueHP = 0;
-    }
-
-    // HPをHTMLに表示するために
-    if (blueHpElement?.innerText) {
-      // HTMLにHPを表示するために
-      // <span id="blueHP"> ここが innerText </span>
-      blueHpElement.innerText = blueHP.toFixed(0).toString();
-
-      // cssのために
-      if (blueHpListElement) {
-        // datasetを利用してdata-hp属性にアクセスし、HP値を設定する
-        // <li data-hp="100"><span id="blueHP">100</span></li>
-        blueHpListElement.dataset.hp = blueHP.toFixed(0).toString();
-      }
-    }
+  const power = SKILL_POWER[index];
+  if (power === undefined) {
+    return;
   }
 
-  // ブルートンならここに引っかかり
   if (blueTurn) {
-    // 該当スキルボタンのダメージを数値化してredHPを削減する。
-    redHP -= HpCalculator(blueAttack, redDefense, skillPower[index]);
-    // HPがマイナスになるのを防ぐため
-    if (redHP < 0) {
-      redHP = 0;
-    }
-
-    // HPをHTMLに表示するために
-    if (redHpElement?.innerText) {
-      redHpElement.innerText = redHP.toFixed(0).toString(); // toString() 無くでもいい。でもTextにNumberを入ればErrorになる。
-
-      // cssのために
-      if (hpListElement) {
-        //.dataset.hpは自動にdata-hp属性をつくてくれる。つまり、hpListElement 要素にdata-hp属性ができて、そこにredHPの値を入れる。
-        hpListElement.dataset.hp = redHP.toFixed(0).toString(); // tofixd => 小数点のために
-      }
-    }
+    applyDamage(blueAttack, redDefense, power, 'red');
+  } else {
+    applyDamage(redAttack, blueDefense, power, 'blue');
   }
 
-  // 攻撃パートが終わったらバトル終了をチェックし、終わっていなければターンを渡す。
   if (!battleEndCheck()) {
     turnChange();
   }
@@ -100,16 +125,16 @@ function HpCalculator(
   skillPower: number,
 ) {
   const damage = (skillPower * attackerAttack) / defenderDefense;
-  return damage * 10; // ダメージを10倍してHPから引く
+  return damage * DAMAGE_MULTIPLIER; // ダメージを10倍してHPから引く
 }
 
 function battleEndCheck() {
   if (blueHP <= 0) {
-    alert('Red wins! The pokemon is ヒトカゲ !');
+    showBattleMessage('Red wins! The pokemon is ヒトカゲ !');
     return true;
   }
   if (redHP <= 0) {
-    alert('Blue wins! The pokemon is ゼニガメ !');
+    showBattleMessage('Blue wins! The pokemon is ゼニガメ !');
     return true;
   }
   return false;
