@@ -15,3 +15,16 @@
   display: flex;
   gap: 10px;
 }
+
+/* mobile 768x1024 px */
+@media (max-width: 768px) {
+  .navbar ul {
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .navbar .nav-right {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
