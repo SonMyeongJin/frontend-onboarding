@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/src/styles/reviewRegister.css" />
+    <link rel="stylesheet" href="/src/styles/navbar.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>morecon review MJ</title>
+    <link rel="shortcut icon" href="https://d28qg0el9tv5wv.cloudfront.net/favicon.ico" type="image/x-icon" />
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="module" src="/src/app/main.ts"></script>
+
+    <nav class="navbar">
+        <ul>
+            <div class="nav-left">
+                <li><a href="/index.html">MYEONGJINCON</a></li>
+            </div>
+
+            <div class="nav-right">
+                <li><a href="/review.html">お買い物ガイド</a></li>
+                <li><a href="/review.html">メルマガ</a></li>
+                <li><a href="/review.html">お気に入り</a></li>
+                <li><a href="/review.html">マイページ</a></li>
+            </div>
+        </ul>
+    </nav>
+
+    <input type="text" placeholder="商品を検索" />
+
+    <hr />
+
+
+    <section id="review-register-section">
+        <h1 class="review-title">レビューを投稿する</h1>
+
+        <h2 class="review-subtitle">
+            ご投稿頂いたレビューは管理者の確認の後、当社サイトやその他のメディアに掲載されます。
+            詳しくはこちらをご確認ください。
+        </h2>
+
+        <h2 class="review-subtitle">
+            また商品初期不良のご報告、ショップへのご意見等は、当店カスタマーサポートまでお問い合わせくださいませ。
+        </h2>
+
+        <!-- レビュー投稿フォーム -->
+        <section id="review-form-section">
+            <h1 class="review-product-name">エバーカラーワンデーナチュラル パールベージュ</h1>
+
+            <form id="review-form">
+                <section class="score-section">
+                    <label for="score">
+                        <h2>評価</h2>
+                    </label>
+                    <select name="score" id="score">
+                        <option value="0">選択してください</option>
+                        <option value="1">★</option>
+                        <option value="2">★★</option>
+                        <option value="3">★★★</option>
+                        <option value="4">★★★★</option>
+                        <option value="5">★★★★★</option>
+                    </select>
+                    <p id="score-error" class="error-message"></p>
+                </section>
+
+                <section class="comment-section">
+                    <label for="comment-textarea">
+                        <h2>コメント</h2>
+                    </label>
+                    <textarea id="comment-textarea"></textarea>
+                    <p id="comment-error" class="error-message"></p>
+                </section>
+
+                <section class="photo-section">
+                    <label for="photo">
+                        <h2>写真</h2>
+                    </label>
+                    <input type="file" id="photo" />
+
+                    <div id="test-photo">
+
+                    </div>
+
+                    <h3 class="photo-guidelines">
+                        写真の例）目のアップ・顔アップ・プリクラ・レンズ等
+                    </h3>
+                    <ul>
+                        <li>
+                            <h3>最大2枚、合計で10MBまで</h3>
+                        </li>
+                        <li>
+                            <h3>2ショット等の写真は必ず被写体の方の了承を得てください</h3>
+                        </li>
+                        <li>
+                            <h3>カラコンが確認しづらい､画像が不鮮明､過度な加工がされている､個人情報が含まれるお写真は掲載を控えさせて頂く場合もございます</h3>
+                        </li>
+                    </ul>
+                </section>
+
+
+                <section class="submit-section">
+                    <button type="button">
+                        <a href="/review.html">戻る</a>
+                    </button>
+                    <button type="submit">レビューを投稿する</button>
+                </section>
+            </form>
+        </section>
+    </section>
+</body>
+
+</html>

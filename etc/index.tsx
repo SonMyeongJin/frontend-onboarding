@@ -1,6 +1,6 @@
-import { BananaButton } from '@molecules/bananaButton';
 import type { FC } from 'react';
 import { memo } from 'react';
+import { BananaButton } from './bananaButton';
 
 export const IndexPage: FC = memo(() => {
   return (
