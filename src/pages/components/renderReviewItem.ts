@@ -11,6 +11,7 @@ const getReviewRequest = {
 const LIKE_ANIMATION_DELAY_MS = 250;
 const LIKE_ANIMATION_RESET_MS = 1000;
 
+// reviewList 를 렌더링하는 함수
 async function renderReviewItem() {
   const reviewSection = document.getElementById('review-list');
   if (!reviewSection) {
@@ -20,7 +21,9 @@ async function renderReviewItem() {
   const data = await getReviews(getReviewRequest);
   const reviewUl = document.createElement('ul');
 
+  // 가져온 리뷰 데이터를 돌면서 각 리뷰 아이템을 생성하여 reviewUl에 추가
   data.reviews.forEach((item) => {
+    // 리스트에 Article 요소를 추가
     reviewUl.appendChild(createReviewArticle(item));
   });
   reviewSection.innerHTML = '';
@@ -110,15 +113,19 @@ function createLikeCountValue(likeCount: number) {
   countLikeValue.textContent = likeCount.toString();
   return countLikeValue;
 }
+
 function changeLiked(likeButton: HTMLButtonElement) {
   likeButton.classList.add('liked');
 }
+
 function changeUnliked(likeButton: HTMLButtonElement) {
   likeButton.classList.remove('liked');
 }
+
 function startLoading(likeButton: HTMLButtonElement) {
   likeButton.classList.add('loading');
 }
+
 function completeLoading(likeButton: HTMLButtonElement) {
   likeButton.classList.remove('loading');
 }
